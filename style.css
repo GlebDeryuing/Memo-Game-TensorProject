@@ -1,5 +1,6 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
 }
 
 body {
@@ -73,7 +74,7 @@ button:active {
 }
 
 .memo div:hover {
-    background: #11829e;
+    background: #106d70;
     /**Подобрать**/
 }
 
@@ -83,7 +84,51 @@ button:active {
     justify-content: space-between;
     width: 400px;
     background: #fff;
+    border-radius: 10px;
     padding: 10px;
+}
+
+.chat-body {
+    height: 570px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.chat-body::-webkit-scrollbar {
+    width: 0;
+}
+
+.message {
+    padding: 20px;
+    width: 70%;
+    background: #e4f9f5;
+    border-radius: 0 30px 30px 30px;
+    margin-bottom: 10px;
+}
+
+.my-message {
+    margin-left: calc(30% - 2 * 20px);
+    padding: 20px;
+    width: 70%;
+    background: #c6eced;
+    border-radius: 30px 30px 0 30px;
+    margin-bottom: 10px;
+}
+
+.message h3,
+.my-message h3 {
+    color: #11999e;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.message p,
+.my-message p {
+    font-size: 14px;
+    color: #40514e;
+    padding: 0;
+    margin: 0px 0px 10px 0px;
 }
 
 .chat button {
