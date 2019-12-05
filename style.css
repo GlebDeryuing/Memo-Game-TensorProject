@@ -1,0 +1,97 @@
+body {
+    background: #e4f9f5;
+    padding-top: 20px;
+}
+
+main {
+    width: 90%;
+    margin: 0 auto;
+}
+
+main,
+.game {
+    display: flex;
+    justify-content: space-around;
+}
+
+.game {}
+
+.menu {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu img {
+    width: 40px;
+    height: 40px;
+}
+
+.menu button {
+    margin: 2px auto;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.menu button:hover {
+    cursor: pointer;
+}
+
+.menu button:hover img {
+    opacity: 0.8;
+}
+
+button:focus,
+button:active {
+    outline: none;
+}
+
+.memo {
+    background: #fff;
+    border-radius: 10px;
+    /**Подобрать**/
+    height: 650px;
+    width: 650px;
+    margin: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 4px;
+}
+
+.memo div {
+    background: #11999e;
+    border-radius: 10px;
+    margin: 4px;
+    transition: 0.3s background;
+}
+
+.memo div:hover {
+    background: #11829e;
+    /**Подобрать**/
+}
+
+.chat {
+    width: 400px;
+    background: #fff;
+    padding: 10px;
+}
+
+.chat button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 7px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.chat button img {
+    width: 30px;
+    height: 30px;
+}

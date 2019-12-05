@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div class="game">
+            <div class="menu">
+                <button class="refresh"><img src="image/refresh.svg" alt="refresh"></button>
+                <button class="pause"><img src="image/pause.svg" alt="pause"></button>
+                <button class="settings"><img src="image/settings.svg" alt="settings"></button>
+                <button class="help"><img src="image/question.svg" alt="help"></button>
+            </div>
+            <div class="memo">
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+            </div>
+
+        </div>
+        <div class="chat">
+            <div class="chat-body">
+                <div class="message">
+                    <h3>Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio? Rerum, saepe totam earum fuga rem necessitatibus!
+                    </p>
+                </div>
+                <div class="my-message">
+                    <h3>Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
+            </div>
+            <div class="chat-send">
+                <form action="" method="POST">
+                    <textarea name="#" id="#" cols="30" rows="10" placeholder="Type a message..."></textarea>
+                    <button type="submit"><img src="image/send.svg" alt="send"></button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script>
+    var memo = document.body.querySelector('.memo');
+    var blocks = memo.children,
+        size = 100 / Math.ceil(Math.sqrt(blocks.length));
+    for (let index = 0; index < blocks.length; index++) {
+        blocks[index].style.height = "calc(" + size + "% - 8px)";
+        blocks[index].style.width = "calc(" + size + "% - 8px)";
+    };
+</script>
+
+</html>
