@@ -93,6 +93,7 @@ button:active {
 
 .memo div:not([class="defeated"]):not([class="selected"]):hover {
     background: #106d70;
+    cursor: pointer;
 }
 
 .chat {
@@ -148,18 +149,6 @@ button:active {
     margin-bottom: 10px;
 }
 
-.chat button {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background: none;
-    padding: 7px;
-    border-radius: 50%;
-    transition: 0.2s;
-}
-
 .chat-bottom {
     bottom: 0px;
     padding: 20px;
@@ -191,7 +180,48 @@ button:active {
     width: calc(100% - 30px);
 }
 
+.chat button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 10px;
+    border-radius: 50%;
+    transform: translateX(10px);
+}
+
+.chat button:focus {
+    animation: send-anima 0.5s 1;
+}
+
+.chat button:focus img {
+    animation: send-animb 0.5s 1;
+}
+
 .chat button img {
     width: 30px;
     height: 30px;
+    transform: translateX(-7%);
+}
+
+@keyframes send-anima {
+    0%,
+    100% {
+        background: none;
+    }
+    50% {
+        background: #e4f9f5;
+    }
+}
+
+@keyframes send-animb {
+    0%,
+    100% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 80%;
+    }
 }

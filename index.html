@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="scrollChatOnBottom();">
     <main>
         <div class="game">
             <div class="menu">
@@ -86,7 +86,7 @@
                 <div class="line"></div>
                 <div class="chat-send">
                     <textarea name="#" id="#" cols="30" rows="10" placeholder="Type a message..."></textarea>
-                    <button type="submit"><img src="image/send.svg" alt="send"></button>
+                    <button type="button"><img src="image/send.svg" alt="send"></button>
                 </div>
             </form>
 
@@ -102,6 +102,11 @@
         blocks[index].style.height = "calc(" + size + "% - 8px)";
         blocks[index].style.width = "calc(" + size + "% - 8px)";
     };
+
+    function scrollChatOnBottom() {
+        var element = document.body.querySelector(".chat-body");
+        element.scrollTop = element.scrollHeight;
+    }
 </script>
 
 </html>
