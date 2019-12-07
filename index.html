@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="scrollChatOnBottom();">
     <main>
         <div class="game">
             <div class="menu">
@@ -20,22 +20,22 @@
                 <button class="help"><img src="image/question.svg" alt="help"></button>
             </div>
             <div class="memo">
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
-                <div class=""></div>
+                <div id="0"></div>
+                <div id="1" class="defeated"><img src="image/cards/0.svg" alt="0"></div>
+                <div id="2" class=""></div>
+                <div id="3" class=""></div>
+                <div id="4" class=""></div>
+                <div id="5" class="defeated"><img src="image/cards/0.svg" alt="0"></div>
+                <div id="6" class=""></div>
+                <div id="7" class=""></div>
+                <div id="8" class=""></div>
+                <div id="9" class=""></div>
+                <div id="10" class=""></div>
+                <div id="11" class=""></div>
+                <div id="12" class=""></div>
+                <div id="13" class=""></div>
+                <div id="14" class=""></div>
+                <div id="15" class=""></div>
             </div>
 
         </div>
@@ -46,18 +46,51 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio? Rerum, saepe totam earum fuga rem necessitatibus!
                     </p>
                 </div>
+                <div class="message">
+                    <h3>Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
                 <div class="my-message">
+                    <h3>You</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
+                <div class="message">
+                    <h3>Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
+                <div class="my-message">
+                    <h3>You</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
+                <div class="message">
+                    <h3>Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
+                <div class="my-message">
+                    <h3>You</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
+                    </p>
+                </div>
+                <div class="message">
                     <h3>Name</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa atque sit velit optio?
                     </p>
                 </div>
             </div>
-            <div class="chat-send">
-                <form action="" method="POST">
+
+            <form class="chat-bottom" method="POST">
+                <div class="line"></div>
+                <div class="chat-send">
                     <textarea name="#" id="#" cols="30" rows="10" placeholder="Type a message..."></textarea>
-                    <button type="submit"><img src="image/send.svg" alt="send"></button>
-                </form>
-            </div>
+                    <button type="button"><img src="image/send.svg" alt="send"></button>
+                </div>
+            </form>
+
         </div>
     </main>
 </body>
@@ -70,6 +103,22 @@
         blocks[index].style.height = "calc(" + size + "% - 8px)";
         blocks[index].style.width = "calc(" + size + "% - 8px)";
     };
+
+    function scrollChatOnBottom() {
+        var element = document.body.querySelector(".chat-body");
+        element.scrollTop = element.scrollHeight;
+    }
+
+    // база события клика
+    document.querySelector('.memo').addEventListener('click', function(e) {
+        var targ = e.target;
+        if (targ.id != "" && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
+            targ.className = "selected";
+            var img = document.createElement("img");
+            img.src = "image/cards/" + targ.id + ".svg"; //id заменить на номер картинки
+            targ.appendChild(img);
+        }
+    });
 </script>
 
 </html>
