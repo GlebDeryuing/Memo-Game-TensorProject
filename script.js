@@ -19,12 +19,10 @@
             return matrix;
         }
         function checkingForEquality(matrix, firstCard, secondCard){
-            if (matrix.indexOf(firstCard) != -1 && matrix.indexOf(secondCard) != -1){
-                if (firstCard === secondCard) {
-                    return true
-                } else {
-                    return false
-                }
+            if (matrix[firstCard] === matrix[secondCard]) {
+                return true
+            } else {
+                return false
             }
         }
 
