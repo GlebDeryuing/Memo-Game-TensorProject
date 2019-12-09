@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <title>Document</title>
 </head>
-
-<body onload="scrollChatOnBottom();">
+<!-- onload="scrollChatOnBottom();" -->
+<body >
     <main>
         <div class="game">
             <div class="menu">
@@ -20,7 +19,7 @@
                 <button class="help"><img src="image/question.svg" alt="help"></button>
             </div>
             <div class="memo">
-                <div id="0"></div>
+                <!-- <div id="0"></div>
                 <div id="1" class="defeated"><img src="image/cards/0.svg" alt="0"></div>
                 <div id="2" class=""></div>
                 <div id="3" class=""></div>
@@ -35,7 +34,7 @@
                 <div id="12" class=""></div>
                 <div id="13" class=""></div>
                 <div id="14" class=""></div>
-                <div id="15" class=""></div>
+                <div id="15" class=""></div> -->
             </div>
 
         </div>
@@ -86,39 +85,27 @@
             <form class="chat-bottom" method="POST">
                 <div class="line"></div>
                 <div class="chat-send">
-                    <textarea name="#" id="#" cols="30" rows="10" placeholder="Type a message..."></textarea>
+                    <textarea name="#" id="#" cols="30" placeholder="Type a message..."></textarea>
                     <button type="button"><img src="image/send.svg" alt="send"></button>
                 </div>
             </form>
 
         </div>
     </main>
+    <div id="myModal" class="modal"> 
+        <div class="modal-block">
+            <button id="plain" class="dif-level">Простой</button>
+            <button id="middle" class="dif-level">Средний</button>
+            <button id="complicated" class="dif-level">Сложный</button>
+        </div>
+        <div class="modal-refresh">
+            <div class="modal-refresh__header">Вы уверенны, что хотите перезапустить игру?</div>
+            <div class="modal-refresh-content">
+                <button id="yes" class="modal-refresh-content__btn">Да</button>
+                <button id="no" class="modal-refresh-content__btn">Нет</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
-
-<script>
-    var memo = document.body.querySelector('.memo');
-    var blocks = memo.children,
-        size = 100 / Math.ceil(Math.sqrt(blocks.length));
-    for (let index = 0; index < blocks.length; index++) {
-        blocks[index].style.height = "calc(" + size + "% - 8px)";
-        blocks[index].style.width = "calc(" + size + "% - 8px)";
-    };
-
-    function scrollChatOnBottom() {
-        var element = document.body.querySelector(".chat-body");
-        element.scrollTop = element.scrollHeight;
-    }
-
-    // база события клика
-    document.querySelector('.memo').addEventListener('click', function(e) {
-        var targ = e.target;
-        if (targ.id != "" && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
-            targ.className = "selected";
-            var img = document.createElement("img");
-            img.src = "image/cards/" + targ.id + ".svg"; //id заменить на номер картинки
-            targ.appendChild(img);
-        }
-    });
-</script>
-
 </html>
