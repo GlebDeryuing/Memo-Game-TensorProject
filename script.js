@@ -8,12 +8,12 @@
             return Math.round(random);
         }   
         function shuffleForMatrix(matrix){
-            for(let i = 0; i < 4; i++){
-                for(let j = 0; j < 4; j++){
+            for(let i = 0; i < 16; i++){
+                for(let j = 0; j < 16; j++){
                     let key = Math.floor(Math.random() * (i + 1));
-                    let temporary = matrix[[i],[j]];
-                    matrix[[i],[j]] = matrix[[i],[key]];
-                    matrix[[i],[key]] = temporary;
+                    let temporary = matrix[i];
+                    matrix[i] = matrix[key];
+                    matrix[key] = temporary;
                 }
             }
             return matrix;
@@ -26,22 +26,15 @@
             }
         }
 
-        for (let i = 0; i < 4; i++){
-            playingCards[i] = [];
-        }
-        for (let i = 0; i < 4; i++){
-            for (let j = 0; j < 4; j++){
+        for (let i = 0; i < 16; i++){
+            valueToBeChecked = randomiser(0, 49);
+            while (playingCards.indexOf(valueToBeChecked) != -1) {
                 valueToBeChecked = randomiser(0, 49);
-                while (playingCards.indexOf(valueToBeChecked) != -1) {
-                    valueToBeChecked = randomiser(0, 49);
-                }
-                playingCards[i][j] = valueToBeChecked;
             }
+            playingCards[i] = valueToBeChecked;
         }
-        for (let i = 2; i < 4; i++){
-            for (let j = 0; j < 4; j++){
-                playingCards[i][j] = playingCards[i - 2][j];
-            }
+        for (let i = 8; i < 16; i++){
+            playingCards[i] = playingCards[i - 8];
         }
         //максимально возможная перетасовка элементов
         for (let i = 0; i < 4; i++) {
