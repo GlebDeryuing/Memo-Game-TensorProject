@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     generator(36);
     memo.addEventListener('click', function(e) {
         var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
-        if (canClick && targ.id != "" && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
+        if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
             targ.className = "selected";
             var img = document.createElement("img");
-            img.src = "image/cards/" + targ.id + ".svg";
+            img.src = "image/cards/" + playingCards[playingDivs.indexOf(targ)].value + ".svg";
             targ.appendChild(img);
             if (selectedId === -1) {
                 selectedId = playingDivs.indexOf(targ);
@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     if (same) {
                         targ.className = "defeated";
+                        targ.firstChild.style.opacity = 0.7;
                         lastTarg.className = "defeated";
+                        lastTarg.firstChild.style.opacity = 0.7;
                     } else {
                         targ.className = "";
                         targ.innerHTML = "";
@@ -70,7 +72,6 @@ function generator(count) {
     for (let index = 0; index < playingCards.length; index++) {
         var field = document.createElement('div');
         field.className = "";
-        field.id = playingCards[index].value;
         playingDivs.push(field);
         memo.appendChild(field);
     }
