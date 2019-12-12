@@ -1,16 +1,17 @@
 var memo,
     selectedId = -1,
-    playingDivs = [];
+    playingDivs = [],
+    canClick = true;
 
 document.addEventListener('DOMContentLoaded', function() {
     memo = document.body.querySelector('.memo');
     generator(36);
     memo.addEventListener('click', function(e) {
         var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
-        if (targ.id != "" && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
+        if (canClick && targ.id != "" && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
             targ.className = "selected";
             var img = document.createElement("img");
-            img.src = "image/cards/" + targ.id + ".svg"; //id заменить на номер картинки
+            img.src = "image/cards/" + targ.id + ".svg";
             targ.appendChild(img);
             if (selectedId === -1) {
                 selectedId = playingDivs.indexOf(targ);
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 same = check(selectedId, playingDivs.indexOf(targ));
                 lastTarg = playingDivs[selectedId];
                 selectedId = -1;
+                canClick = false;
                 setTimeout(() => {
                     if (same) {
                         targ.className = "defeated";
@@ -28,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         lastTarg.className = "";
                         lastTarg.innerHTML = "";
                     }
+                    canClick = true;
                 }, 300);
-
             }
         } else if (targ.className === "selected") {
             targ.className = "";
@@ -48,7 +50,6 @@ function objectCreation(value) {
         passed: false
     }
     return newobj;
-
 }
 
 function generator(count) {
@@ -77,7 +78,7 @@ function generator(count) {
 
 }
 
-function check(a, b) { // index, потом див
+function check(a, b) {
     var first = playingCards[a],
         second = playingCards[b];
     if (!first.passed && !second.passed && first.value === second.value) {
@@ -85,7 +86,11 @@ function check(a, b) { // index, потом див
         first.passed = true;
         second.passed = true;
         if (freeCounter === 0) {
-            console.log('win')
+            // вывести победное окно
+            setTimeout(() => {
+                generator(prompt("Победа! Новое поле:"));
+
+            }, 600);
         }
         return true;
     } else return false;
