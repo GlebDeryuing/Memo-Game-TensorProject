@@ -64,17 +64,15 @@ button:active {
     padding: 4px;
 }
 
-.memo-menu {
-    /* меню, не готово (ошибка позиционирования) */
-    visibility: hidden;
+.modal {
     z-index: 2;
     border-radius: 10px;
-    margin: 7px;
+    margin: -4px;
     padding: 4px;
     height: 650px;
     width: 650px;
     position: fixed;
-    background: rgba(209, 209, 209, 0.61);
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .memo .selected,
@@ -84,28 +82,28 @@ button:active {
     justify-content: center;
 }
 
-.memo .selected {
-    background: #30e3ca;
-}
-
-.memo .defeated {
-    background: #c6eced;
-}
-
 .memo img {
     height: 50%;
     width: 50%;
     transition: 0.3s;
 }
 
-.memo div {
+.memo div:not([class="modal"]) {
     background: #11999e;
     border-radius: 10px;
     margin: 4px;
     transition: 0.3s background;
 }
 
-.memo div:not([class="defeated"]):not([class="selected"]):hover {
+.memo .selected {
+    background: #30e3ca !important;
+}
+
+.memo .defeated {
+    background: #c6eced !important;
+}
+
+.memo div:not([class="defeated"]):not([class="selected"]):not([class="modal"]):hover {
     background: #106d70;
     cursor: pointer;
 }

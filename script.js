@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     generator(36);
     memo.addEventListener('click', function(e) {
         var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
-        if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
+        if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo" && targ.className != "setting") {
             targ.className = "selected";
             var img = document.createElement("img");
             img.src = "image/cards/" + playingCards[playingDivs.indexOf(targ)].value + ".svg";
@@ -76,6 +76,12 @@ function generator(count) {
         memo.appendChild(field);
     }
     resize();
+
+    // Создание окна меню без вложенных элементов
+    // var menu = document.createElement('div');
+    // menu.className = "setting";
+    // memo.appendChild(menu);
+
 
 }
 
