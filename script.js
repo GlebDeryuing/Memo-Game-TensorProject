@@ -1,157 +1,162 @@
-(function(){
-    var memo = document.querySelector('.memo');
+var memo  = document.querySelector('.memo'),
+    selectedId = -1,
+    playingDivs = [],
+    canClick = true,
+    windowModal = document.querySelector('.modal'),
+    level = document.querySelectorAll('.modal-block__level'),
+    refresh = document.querySelector('.refresh'),
+    settings = document.querySelector('.settings'),
+    countFields = 16,
+    newCountFields = 16;
 
-    //Динамическое создание полей
-    function createMemo(x,y){
-        for (var i = 0; i < x; i++){
-            for (var j = 0; j < y; j++)
-            {
-                var field = document.createElement('div');
-                // field.className = "";
-                field.id = `${i,j}`;
-                memo.appendChild(field);
-            }
-        }
-        //Расчёт размеров для полей
-        var blocks = memo.children,
-            size = 100 / Math.ceil(Math.sqrt(blocks.length));
-        for (let index = 0; index < blocks.length; index++) {
-            blocks[index].style.height = "calc(" + size + "% - 8px)";
-            blocks[index].style.width = "calc(" + size + "% - 8px)";
-        };
-    }
-
-    function cleanerMemo(){
-        while(memo.firstChild) memo.removeChild(memo.firstChild);
-    }
-
-    document.addEventListener("DOMContentLoaded", function(){
-        //По умолчанию поле сделано 4*4
-        createMemo(4,4);
-        
-        let 
-        windowModal = document.querySelector('.modal'),
-        level = document.querySelectorAll('.dif-level'),
-        refresh = document.querySelector('.refresh'),
-        settings = document.querySelector('.settings');
-
-        //Обработка события клика по настройкам
-        settings.addEventListener('click', ()=>
-            {
-                //Открытие модального окна с выборами уровня сложности
-                windowModal.style.display = 'flex';
-                document.querySelector('.modal-block').style.display = 'flex';
-            }
-        )
-        
-        //При клики на модальное окно, само окно и блоки внутри него становятся none
-        windowModal.addEventListener('click', ()=>{
-            windowModal.style.display = 'none';
-            document.querySelector('.modal-block').style.display = 'none';
-            document.querySelector('.modal-refresh').style.display = 'none'
-        }, true)
-
-        //Событие клика по кнопке с уровнем сложности
-        level.forEach((e)=>
-            e.addEventListener('click', ()=>
-                {
-                    if (e.id === 'plain'){
-                        cleanerMemo();
-                        createMemo(4,4);
+document.addEventListener('DOMContentLoaded', function() {
+    generator(countFields);
+    memo.addEventListener('click', function(e) {
+        var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
+        if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo" && targ.className != "setting") {
+            targ.className = "selected";
+            var img = document.createElement("img");
+            img.src = "image/cards/" + playingCards[playingDivs.indexOf(targ)].value + ".svg";
+            targ.appendChild(img);
+            if (selectedId === -1) {
+                selectedId = playingDivs.indexOf(targ);
+            } else {
+                same = check(selectedId, playingDivs.indexOf(targ));
+                lastTarg = playingDivs[selectedId];
+                selectedId = -1;
+                canClick = false;
+                setTimeout(() => {
+                    if (same) {
+                        targ.className = "defeated";
+                        targ.firstChild.style.opacity = 0.7;
+                        lastTarg.className = "defeated";
+                        lastTarg.firstChild.style.opacity = 0.7;
+                    } else {
+                        targ.className = "";
+                        targ.innerHTML = "";
+                        lastTarg.className = "";
+                        lastTarg.innerHTML = "";
                     }
-                    else if (e.id === 'middle'){
-                        cleanerMemo();
-                        createMemo(5,5);
-                    }
-                    else if (e.id === 'complicated'){
-                        cleanerMemo();
-                        createMemo(6,6);
-                    }
-                    
-                }
-            )
-        )
-
-        //Кнопка перезапуска игры
-        refresh.addEventListener('click', ()=>
-            {
-                //Появление модального окна с всплывающим блоком
-                windowModal.style.display = 'flex';
-                document.querySelector('.modal-refresh').style.display = 'flex';
+                    canClick = true;
+                }, 300);
             }
-        )
+        } else if (targ.className === "selected") {
+            targ.className = "";
+            targ.innerHTML = "";
+            selectedId = -1;
+        }
+    });
 
-        //Если при предложении перезапуска игры нажали "да",
-        // то вызываем событие клика по настройкам с выбором уровня сложности
-        var refreshButtons = document.querySelectorAll('.modal-refresh-content__btn');
-        refreshButtons.forEach((e)=>{
-            e.addEventListener('click', ()=>{
-                    if(e.id === 'yes') settings.click()
-                }
-            )
-        })
-        // var linecount = 0;
-        // var message = document.querySelector('.chat-send textarea');
-        // message.addEventListener('keyup',()=>{
-        //     var text = message.value;
-        //     var cols = message.cols;
-        //     linecount = Math.ceil( text.split(/\r|\r\n|\n/).length / cols );
-        //     message.style.height = 30*linecount + 'px';
-            
-        // })
-    
-        // function scrollChatOnBottom() {
-            var element = document.body.querySelector(".chat-body");
-            element.scrollTop = element.scrollHeight;
-        // }
-    
-        // база события клика
-        document.querySelector('.memo').addEventListener('click', function(e) {
-            var targ = e.target;
-            if (targ.id != "" && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo") {
-                targ.className = "selected";
-                var img = document.createElement("img");
-                img.src = "image/cards/" + targ.id + ".svg"; //id заменить на номер картинки
-                targ.appendChild(img);
-            }
-        });
-
-        
-        let 
-        playingCards = [];
-        
-        function randomiser(min, max){
-            let random = min + Math.random() * (max - min);
-            return Math.round(random);
-        }
-        
-        function shuffleForMatrix(matrix){
-            for(let i = 0; i < 4; i++){
-                for(let j = 0; j < 4; j++){
-                    let key = Math.floor(Math.random() * (i + 1));
-                    let temporary = matrix[[i],[j]];
-                    matrix[[i],[j]] = matrix[[i],[key]];
-                    matrix[[i],[key]] = temporary;
-                }
-            }
-            return matrix;
-        }
-        for (let i = 0; i < 4; i++){
-            playingCards[i] = [];
-        }
-        for (let i = 0; i < 2; i++){
-            for (let j = 0; j < 4; j++){
-                playingCards[i][j] = randomiser(0, 49);
-            }
-        }
-
-        for (let i = 2; i < 4; i++){
-            for (let j = 0; j < 4; j++){
-                playingCards[i][j] = playingCards[i - 2][j];
-            }
-        }
-
-        playingCards = shuffleForMatrix(playingCards);
-        console.log(playingCards)
+    settings.addEventListener('click', ()=>{
+        //Открытие модального окна с выборами уровня сложности
+        windowModal.style.display = 'flex';
+        document.querySelector('.modal-block').style.display = 'flex';
     })
-})();
+
+    level.forEach((e)=>
+            e.addEventListener('click', ()=>
+            {
+                var cnt = e.id
+                newCountFields = parseInt(cnt)
+                windowModal.style.display = 'none';
+                document.querySelector('.modal-block').style.display = 'none';
+                refresh.click();
+            }
+        )
+    )
+
+
+    refresh.addEventListener('click', ()=>{
+        //Появление модального окна с всплывающим блоком
+        windowModal.style.display = 'flex';
+        document.querySelector('#modalRefresh').style.display = 'flex';
+    })
+
+    var Buttons = document.querySelectorAll('.modal-message-content');
+    Buttons.forEach((e)=>{
+        e.addEventListener('click', (event)=>{
+            if (event.target.id === 'yesRefresh' || event.target.id === 'noWinning')
+                {
+                    while(memo.firstChild) memo.removeChild(memo.firstChild);
+                    generator(newCountFields);
+                }
+                windowModal.style.display = 'none';
+                var windows = document.querySelectorAll('.modal-message')
+                windows.forEach((e)=>{
+                    e.style.display = 'none';
+                })
+            }
+        )
+    })
+});
+
+var playingCards = [],
+    freeCounter = 0;
+
+function objectCreation(value) {
+    var newobj = {
+        value: value,
+        passed: false
+    }
+    return newobj;
+}
+
+function generator(count) {
+    playingCards = [];
+    playingDivs = [];
+    freeCounter = count;
+    for (let index = 0; index < count / 2; index++) {
+        playingCards.push(objectCreation(index));
+        playingCards.push(objectCreation(index));
+    }
+    for (let index = 0; index < playingCards.length; index++) {
+        var tempObj = playingCards[index],
+            newRandom = Math.floor(Math.random() * (count - 1));
+        playingCards[index] = playingCards[newRandom];
+        playingCards[newRandom] = tempObj;
+    }
+    for (let index = 0; index < playingCards.length; index++) {
+        var field = document.createElement('div');
+        field.className = "";
+        playingDivs.push(field);
+        memo.appendChild(field);
+    }
+    resize();
+
+    // Создание окна меню без вложенных элементов
+    // var menu = document.createElement('div');
+    // menu.className = "setting";
+    // memo.appendChild(menu);
+
+
+}
+
+function check(a, b) {
+    var first = playingCards[a],
+        second = playingCards[b];
+    if (!first.passed && !second.passed && first.value === second.value) {
+        freeCounter -= 2;
+        first.passed = true;
+        second.passed = true;
+        if (freeCounter === 0) {
+            // вывести победное окно
+            setTimeout(()=>{
+                windowModal.style.display = 'flex';
+                var windowWinning = document.querySelector('#modalWinning');
+                windowWinning.style.display = 'flex'
+            }, 1000);
+
+            // windowWinning.firstChild.textContent = `Вы победили! Ваши очки: \n Хотите добавиться в таблицу лидеров?`;
+        }
+        return true;
+    } else return false;
+}
+
+function resize() {
+    var blocks = memo.children,
+        size = 100 / Math.ceil(Math.sqrt(blocks.length));
+    for (let index = 0; index < blocks.length; index++) {
+        blocks[index].style.height = "calc(" + size + "% - 8px)";
+        blocks[index].style.width = "calc(" + size + "% - 8px)";
+    };
+}
