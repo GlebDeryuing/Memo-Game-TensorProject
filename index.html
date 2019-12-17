@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body >
+
+<body">
     <main>
+
         <div class="game">
             <div class="menu">
                 <button class="refresh"><img src="image/refresh.svg" alt="refresh"></button>
@@ -18,22 +20,9 @@
                 <button class="help"><img src="image/question.svg" alt="help"></button>
             </div>
             <div class="memo">
-                <!-- <div id="0"></div>
-                <div id="1" class="defeated"><img src="image/cards/0.svg" alt="0"></div>
-                <div id="2" class=""></div>
-                <div id="3" class=""></div>
-                <div id="4" class=""></div>
-                <div id="5" class="defeated"><img src="image/cards/0.svg" alt="0"></div>
-                <div id="6" class=""></div>
-                <div id="7" class=""></div>
-                <div id="8" class=""></div>
-                <div id="9" class=""></div>
-                <div id="10" class=""></div>
-                <div id="11" class=""></div>
-                <div id="12" class=""></div>
-                <div id="13" class=""></div>
-                <div id="14" class=""></div>
-                <div id="15" class=""></div> -->
+                
+                
+                <!-- <div class="modal"></div> -->
             </div>
 
         </div>
@@ -84,27 +73,45 @@
             <form class="chat-bottom" method="POST">
                 <div class="line"></div>
                 <div class="chat-send">
-                    <textarea name="#" id="#" cols="30" placeholder="Type a message..."></textarea>
+                    <textarea name="#" id="#" cols="30" rows="10" placeholder="Type a message..."></textarea>
                     <button type="button"><img src="image/send.svg" alt="send"></button>
                 </div>
             </form>
 
         </div>
     </main>
+    
     <div id="myModal" class="modal"> 
         <div class="modal-block">
-            <button id="plain" class="dif-level">Простой</button>
-            <button id="middle" class="dif-level">Средний</button>
-            <button id="complicated" class="dif-level">Сложный</button>
+            <button id="16" class="modal-block__level">Простой</button>
+            <button id="36" class="modal-block__level">Средний</button>
+            <button id="64" class="modal-block__level">Сложный</button>
         </div>
-        <div class="modal-refresh">
-            <div class="modal-refresh__header">Вы уверенны, что хотите перезапустить игру?</div>
-            <div class="modal-refresh-content">
-                <button id="yes" class="modal-refresh-content__btn">Да</button>
-                <button id="no" class="modal-refresh-content__btn">Нет</button>
+        <div id="modalRefresh" class="modal-message">
+            <div class="modal-message__header">Вы уверенны, что хотите перезапустить игру?</div>
+            <div id="modalRefreshButtons" class="modal-message-content">
+                <button id="yesRefresh">Да</button>
+                <button id="noRefresh">Нет</button>
+            </div>
+        </div>
+        <div id="modalWinning" class="modal-message">
+            <div class="modal-message__header">Победа! Добавиться в таблицу лидеров?</div>
+            <div id="modalWinningButtons" class="modal-message-content">
+                <button id="yesWinning">Да</button>
+                <button id="noWinning">Нет</button>
             </div>
         </div>
     </div>
+    
+    
     <script src="script.js"></script>
 </body>
+
+<script>
+    function scrollChatOnBottom() {
+        var element = document.body.querySelector(".chat-body");
+        element.scrollTop = element.scrollHeight;
+    }
+</script>
+
 </html>
