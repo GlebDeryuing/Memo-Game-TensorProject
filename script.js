@@ -1,11 +1,18 @@
-var memo,
+
+var memo  = document.querySelector('.memo'),
     selectedId = -1,
     playingDivs = [],
-    canClick = true;
+    canClick = true,
+    windowModal = document.querySelector('.modal'),
+    level = document.querySelectorAll('.modal-block__level'),
+    refresh = document.querySelector('.refresh'),
+    settings = document.querySelector('.settings'),
+    countFields = 16,
+    newCountFields = 16;
 
 document.addEventListener('DOMContentLoaded', function() {
-    memo = document.body.querySelector('.memo');
-    generator(36);
+    generator(countFields);
+
     memo.addEventListener('click', function(e) {
         var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
         if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo" && targ.className != "setting") {
@@ -41,7 +48,50 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedId = -1;
         }
     });
+
+    settings.addEventListener('click', ()=>{
+        //Открытие модального окна с выборами уровня сложности
+        windowModal.style.display = 'flex';
+        document.querySelector('.modal-block').style.display = 'flex';
+    })
+
+    level.forEach((e)=>
+            e.addEventListener('click', ()=>
+            {
+                var cnt = e.id
+                newCountFields = parseInt(cnt)
+                windowModal.style.display = 'none';
+                document.querySelector('.modal-block').style.display = 'none';
+                refresh.click();
+            }
+        )
+    )
+
+
+    refresh.addEventListener('click', ()=>{
+        //Появление модального окна с всплывающим блоком
+        windowModal.style.display = 'flex';
+        document.querySelector('#modalRefresh').style.display = 'flex';
+    })
+
+    var Buttons = document.querySelectorAll('.modal-message-content');
+    Buttons.forEach((e)=>{
+        e.addEventListener('click', (event)=>{
+            if (event.target.id === 'yesRefresh' || event.target.id === 'noWinning')
+                {
+                    while(memo.firstChild) memo.removeChild(memo.firstChild);
+                    generator(newCountFields);
+                }
+                windowModal.style.display = 'none';
+                var windows = document.querySelectorAll('.modal-message')
+                windows.forEach((e)=>{
+                    e.style.display = 'none';
+                })
+            }
+        )
+    })
 });
+
 
 var playingCards = [],
     freeCounter = 0;
@@ -68,7 +118,6 @@ function generator(count) {
         playingCards[index] = playingCards[newRandom];
         playingCards[newRandom] = tempObj;
     }
-    memo.innerHTML = '';
     for (let index = 0; index < playingCards.length; index++) {
         var field = document.createElement('div');
         field.className = "";
@@ -94,10 +143,15 @@ function check(a, b) {
         second.passed = true;
         if (freeCounter === 0) {
             // вывести победное окно
-            setTimeout(() => {
-                generator(prompt("Победа! Новое поле:"));
 
-            }, 600);
+            setTimeout(()=>{
+                windowModal.style.display = 'flex';
+                var windowWinning = document.querySelector('#modalWinning');
+                windowWinning.style.display = 'flex'
+            }, 1000);
+
+            // windowWinning.firstChild.textContent = `Вы победили! Ваши очки: \n Хотите добавиться в таблицу лидеров?`;
+
         }
         return true;
     } else return false;
