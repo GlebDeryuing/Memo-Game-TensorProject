@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <title>Document</title>
 </head>
 
-<body onload="scrollChatOnBottom();">
+<body">
     <main>
 
         <div class="game">
@@ -21,7 +20,11 @@
                 <button class="help"><img src="image/question.svg" alt="help"></button>
             </div>
             <div class="memo">
-                <div class="modal"></div>
+
+                
+                
+                <!-- <div class="modal"></div> -->
+
             </div>
 
         </div>
@@ -79,6 +82,31 @@
 
         </div>
     </main>
+    
+    <div id="myModal" class="modal"> 
+        <div class="modal-block">
+            <button id="16" class="modal-block__level">Простой</button>
+            <button id="36" class="modal-block__level">Средний</button>
+            <button id="64" class="modal-block__level">Сложный</button>
+        </div>
+        <div id="modalRefresh" class="modal-message">
+            <div class="modal-message__header">Вы уверенны, что хотите перезапустить игру?</div>
+            <div id="modalRefreshButtons" class="modal-message-content">
+                <button id="yesRefresh">Да</button>
+                <button id="noRefresh">Нет</button>
+            </div>
+        </div>
+        <div id="modalWinning" class="modal-message">
+            <div class="modal-message__header">Победа! Добавиться в таблицу лидеров?</div>
+            <div id="modalWinningButtons" class="modal-message-content">
+                <button id="yesWinning">Да</button>
+                <button id="noWinning">Нет</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="script.js"></script>
 </body>
 
 <script>

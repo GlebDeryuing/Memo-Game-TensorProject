@@ -68,14 +68,87 @@ button:active {
 }
 
 .modal {
-    z-index: 2;
-    border-radius: 10px;
-    margin: -4px;
-    padding: 4px;
-    height: 650px;
-    width: 650px;
+    display: none;
     position: fixed;
-    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    left: 0;
+    top: 0;
+    /* left:100px;
+    top:30px; */
+    /* margin: 7px;
+    padding: 4px; */
+    width: 100vw;
+    height: 100vh;
+    /* height: 650px;
+    width: 650px; */
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    align-items: center;
+}
+
+.modal-block {
+    display: none;
+    align-self: center;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-block__level {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    background-color: #0a6a6d;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-block__level:hover {
+    background-color: #074c4e;
+}
+
+.modal-message {
+    width: 400px;
+    /* height: 200px; */
+    padding: 15px;
+    border: 1px solid rgb(95, 95, 95);
+    margin: auto;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.modal-message__header {
+    font-size: 25px;
+    color: #40514e;
+    text-align: center;
+    padding: 15px;
+    display: flex;
+}
+
+.modal-message-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 15px;
+}
+
+.modal-message-content button {
+    width: 90px;
+    height: 60px;
+    background-color: #11999e;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    /* padding: 20px 30px; */
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-message-content button:hover {
+    background-color: #0d7579;
 }
 
 .memo .selected,
