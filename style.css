@@ -65,15 +65,6 @@ button:active {
 }
 
 .modal {
-    /* display: none;
-    z-index: 9999;
-    border-radius: 10px;
-    margin: -4px;
-    padding: 4px;
-    height: 650px;
-    width: 650px;
-    position: fixed;
-    background: rgba(255, 255, 255, 0.8); */
     display: none;
     position: fixed;
     z-index: 1;
@@ -91,14 +82,12 @@ button:active {
     background-color: rgba(255, 255, 255, 0.8);
     align-items: center;
 }
-/* .modal > {
-    z-index: 9999;
-} */
 
 .modal-block{
     display: none;
     align-self: center;
     justify-content: space-around;
+
     align-items: center;
     width: 100%;
     height: 100%;
@@ -166,6 +155,7 @@ button:active {
     align-items: center;
     justify-content: center;
 }
+
 
 .memo img {
     height: 50%;

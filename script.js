@@ -1,3 +1,4 @@
+
 var memo  = document.querySelector('.memo'),
     selectedId = -1,
     playingDivs = [],
@@ -11,6 +12,7 @@ var memo  = document.querySelector('.memo'),
 
 document.addEventListener('DOMContentLoaded', function() {
     generator(countFields);
+
     memo.addEventListener('click', function(e) {
         var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
         if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo" && targ.className != "setting") {
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 });
 
+
 var playingCards = [],
     freeCounter = 0;
 
@@ -140,6 +143,7 @@ function check(a, b) {
         second.passed = true;
         if (freeCounter === 0) {
             // вывести победное окно
+
             setTimeout(()=>{
                 windowModal.style.display = 'flex';
                 var windowWinning = document.querySelector('#modalWinning');
@@ -147,6 +151,7 @@ function check(a, b) {
             }, 1000);
 
             // windowWinning.firstChild.textContent = `Вы победили! Ваши очки: \n Хотите добавиться в таблицу лидеров?`;
+
         }
         return true;
     } else return false;
