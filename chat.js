@@ -7,7 +7,7 @@ export default function sent() {
     .send({ name: 'lol' })
     .then(console.log('ready!'))
     .then((res) => {
-      const sid = JSON.parse(res.body.Cookie.sid);
+      const sid = JSON.parse(res.body);
       console.log(sid);
     })
     .catch((err) => console.log(err));
@@ -16,7 +16,7 @@ export default function sent() {
     .get('/api/users')
     .set('Content-Type', 'application/json')
     .then((res) => {
-      const users = JSON.parse(res.body.users.all);
+      const users = JSON.parse(res.body);
       console.log(users);
     });
 }
