@@ -7,7 +7,7 @@ export default function sent() {
     .send({ name: 'lol' })
     .then(console.log('ready!'))
     .then((res) => {
-      console.log(res.body.sid);
+      console.log(res.body.Cookie.sid);
     })
     .catch((err) => console.log(err));
 
