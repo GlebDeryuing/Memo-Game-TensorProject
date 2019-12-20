@@ -1,3 +1,5 @@
+import sent from './chat';
+
 var memo = document.querySelector('.memo'),
     selectedId = -1,
     playingDivs = [],
@@ -163,3 +165,5 @@ function resize() {
         blocks[index].style.width = "calc(" + size + "% - " + padd + "px)";
     };
 }
+
+sent();
