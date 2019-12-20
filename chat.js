@@ -11,6 +11,8 @@ export default function sent() {
   request
     .get('/api/users')
     .set('Content-Type', 'application/json')
-    .query({ name: 'lol' })
-    .then(res => console.log(res));
+    .then(res => {
+      const users = new json.JSONObject(res);
+      console.log(users);
+    });
 }
