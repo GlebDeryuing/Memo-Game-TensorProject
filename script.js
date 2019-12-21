@@ -167,4 +167,7 @@ function resize() {
 }
 
 authorize();
-document.addEventListener('DOMContentLoaded', sendButtonClick);
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('click!');
+    sendButtonClick();
+});
