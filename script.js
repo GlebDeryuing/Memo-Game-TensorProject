@@ -2,8 +2,7 @@ import { authorize, sendButtonClick } from './chat';
 
 authorize();
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('click!');
+document.addEventListener('submit', function() {
   sendButtonClick();
 });
 
