@@ -1,4 +1,4 @@
-import sent from './chat';
+import { authorize, sendButtonClick } from './chat';
 
 var memo = document.querySelector('.memo'),
     selectedId = -1,
@@ -166,4 +166,5 @@ function resize() {
     };
 }
 
-sent();
+authorize();
+document.addEventListener('DOMContentLoaded', sendButtonClick);

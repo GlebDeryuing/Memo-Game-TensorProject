@@ -1,6 +1,23 @@
 const request = require('./node_modules/superagent');
 
-export default function sent() {
+function requestMessages(requestData) {
+  return request
+    .post('/api/messages')
+    .set('Content-Type', 'application/json')
+    .send({ text: requestData })
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+}
+
+function sendMessage(text) {
+  return requestMessages({
+    body: JSON.stringify({
+      text,
+    }),
+  });
+}
+
+export function authorize() {
   request
     .post('/api/users')
     .set('Content-Type', 'application/json')
@@ -20,4 +37,17 @@ export default function sent() {
       console.log(users);
     });
     */
+}
+
+export function sendButtonClick() {
+  const chatArea = document.body.getElementsByClassName('chat-send');
+  chatArea.button.onclick = function () {
+    const text = chatArea.getElementById('#').value;
+
+    if (text) {
+      sendMessage(text).then(() => {
+        chatArea.getElementById('#').value = '';
+      });
+    }
+  };
 }
