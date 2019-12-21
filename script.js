@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
     const sendButton = document.getElementById('send');
-    sendButton.addEventListener('submit', function() {
+    console.log(sendButton);
+    sendButton.addEventListener('click', function() {
         sendButtonClick();
       });
 });
