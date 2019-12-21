@@ -1,5 +1,9 @@
 import { sendButtonClick, getMessages } from './chat';
+<<<<<<< HEAD:src/script.js
 import auth from './auth';
+=======
+import auth from './auth.js';
+>>>>>>> auth:script.js
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
