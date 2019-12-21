@@ -19,7 +19,7 @@ function createDiv(className, text, author) { // Создает дивы из р
   return div;
 }
 
-const getName = (message) => message.name;
+const getName = (message) => message.user;
 const getText = (message) => message.text;
 const getTime = (message) => message.time;
 const getGame = (message) => message.game;
@@ -37,10 +37,9 @@ function render(messages) { // Обновляем чат после очистк
   removeAll();
   console.log(messages);
   const chat = document.body.getElementsByClassName('chat-body');
-  console.log("CHAT:", chat);
   const parsed = Object.values(messages).map((item) => getDataDiv(item));
   console.log("Parsed: ", parsed);
-  parsed.forEach((i) => document.body.getElementsByClassName('chat-body')[0].appendChild(i));
+  parsed.forEach((i) => chat[0].appendChild(i));
 }
 
 function scrollChatOnBottom() {
