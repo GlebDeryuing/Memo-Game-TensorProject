@@ -40,7 +40,6 @@ export function getMessages() {
   return request
     .get('/api/messages')
     .set('Content-Type', 'application/json')
-    .then((response) => response.json())
     .then(render);
 }
 
