@@ -11,11 +11,11 @@ var memo = document.querySelector('.memo'),
     countFields = 16,
     newCountFields = 16;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     authorize(); // A.N.K.
     generator(countFields);
 
-    memo.addEventListener('click', function(e) {
+    memo.addEventListener('click', (e) => {
         var targ = e.target.nodeName === "DIV" ? e.target : e.target.parentNode;
         if (canClick && targ.className != "selected" && targ.className != "defeated" && targ.className != "memo" && targ.className != "setting") {
             targ.className = "selected";
@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
     })
-    const sendButton = document.getElementById('send');
-    sendButton.addEventListener('click', function() {
-        let message = document.getElementsById('#').value;
+    const sendButton = document.getElementById('send'); //A.N.K.
+    sendButton.addEventListener('click', () => {
+        let message = document.getElementsById('#').data;
         sendButtonClick(message);
       });
 });
