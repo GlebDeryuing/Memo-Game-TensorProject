@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     })
-    const sendButton = document.getElementById('send'); //A.N.K.
+    const sendButton = document.getElementById('send'); // A.N.K.
     sendButton.addEventListener('click', () => {
-        let message = document.getElementById('#').value;
+        const message = document.getElementById('#').value;
         sendButtonClick(message);
       });
 });

@@ -9,13 +9,9 @@ function requestMessages(requestData) {
     .catch((err) => console.log(err));
 }
 
-function sendMessage(text) {
-  return requestMessages({
-    body: JSON.stringify({
-      text,
-    }),
-  });
-}
+/*function sendMessage(text) {
+  return text;
+}*/
 
 export function authorize() {
   request
@@ -23,7 +19,7 @@ export function authorize() {
     .set('Content-Type', 'application/json')
     .send({ name: 'lol' })
     .then(console.log('authorized!'))
-/*    .then((res) => {
+  /*    .then((res) => {
       const sid = JSON.parse(res.body.Cookie.sid);
       console.log(sid);
     }) */
@@ -41,13 +37,13 @@ export function authorize() {
 
 export function sendButtonClick(message) {
   const text = message;
-  //chatArea.getElementById('send').onClick = function () {
-    console.log('TEXT: ', text);
-    if (text) {
-      console.log('text was sent');
-      sendMessage(text).then(() => {
-        text = '';
-      });
-    }
- // };
+  // chatArea.getElementById('send').onClick = function () {
+  console.log('TEXT: ', text);
+  if (text) {
+    console.log('text was sent');
+    requestMessages(text).then(() => {
+      text = '';
+    });
+  }
+  // };
 }
