@@ -5,7 +5,7 @@ function requestMessages(requestData) {
     .post('/api/messages')
     .set('Content-Type', 'application/json')
     .send({ text: requestData })
-    .then((response) => response.json())
+    .then((response) => JSON.stringify(response))
     .catch((err) => console.log(err));
 }
 
