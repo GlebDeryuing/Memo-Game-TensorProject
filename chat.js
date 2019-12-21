@@ -1,17 +1,26 @@
 const request = require('superagent');
 
-function requestMessages(requestData) {
-  return request
-    .post('/api/messages')
+function removeAll() {
+  const chat = document.querySelector('message');
+  chat.forEach((message) => message.remove);
+}
+
+function updateChat() {
+  request
+    .get('/api/messages')
     .set('Content-Type', 'application/json')
-    .send({ text: requestData })
-    .then((response) => JSON.stringify(response))
+    .then(removeAll)
     .catch((err) => console.log(err));
 }
 
-/*function sendMessage(text) {
-  return text;
-}*/
+function sendMessage(message) {
+  return request
+    .post('/api/messages')
+    .set('Content-Type', 'application/json')
+    .send({ text: message })
+    .then((response) => JSON.stringify(response))
+    .catch((err) => console.log(err));
+}
 
 export function authorize() {
   request
@@ -40,10 +49,9 @@ export function sendButtonClick() {
   // chatArea.getElementById('send').onClick = function () {
   console.log('TEXT: ', text);
   if (text) {
-    requestMessages(text).then(() => {
-      text = '';
-    });
+    sendMessage(text).then(() => '');
     console.log('text was sent');
+    updateChat();
   }
   // };
 }
