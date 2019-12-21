@@ -13,7 +13,7 @@ const countFields = 16;
 let newCountFields = 16;
 
 document.addEventListener('DOMContentLoaded', () => {
-  authorize(); // A.N.K.
+  authorize();
   generator(countFields);
 
   memo.addEventListener('click', (e) => {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-  const sendButton = document.getElementById('send'); // A.N.K.
+  const sendButton = document.getElementById('send');
   sendButton.addEventListener('click', () => {
     sendButtonClick();
   });

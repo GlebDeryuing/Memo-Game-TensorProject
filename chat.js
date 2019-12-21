@@ -26,7 +26,6 @@ const getGame = (message) => message.game;
 function getDataDiv(response) { // Парсинг ответа сервера, создание классов
   const message = response;
   const name = getName(message);
-  console.log(name);
   const text = getText(message);
   const className = message.isMine ? 'my-message' : 'message';
   return createDiv(className, text, name);
@@ -34,10 +33,8 @@ function getDataDiv(response) { // Парсинг ответа сервера, �
 
 function render(messages) { // Обновляем чат после очистки, вставляя последние сообщения
   removeAll();
-  console.log(messages);
   const chat = document.body.getElementsByClassName('chat-body');
   const parsed = Object.values(messages).map((item) => getDataDiv(item));
-  console.log("Parsed: ", parsed);
   parsed.forEach((i) => chat[0].appendChild(i));
 }
 
@@ -77,7 +74,6 @@ export function sendButtonClick() { // Прослушка клика на кно
     sendMessage(text.value).then(() => {
       text.value = '';
     });
-    console.log('text was sent');
     getMessages();
     scrollChatOnBottom();
   }
