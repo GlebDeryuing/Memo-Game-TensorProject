@@ -37,7 +37,7 @@ function render(messages) {
 
   const chat = document.getElementsByClassName('chat-body');
 
-  const divs = messages.prototype.map((item) => getDataDiv(item));
+  const divs = Object.values(messages).map((item) => getDataDiv(item));
   divs.forEach((elem) => chat.appendChild(elem));
 }
 
