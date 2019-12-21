@@ -25,7 +25,7 @@ const getTime = (message) => message.time;
 const getGame = (message) => message.game;
 
 function getDataDiv(response) { // Парсинг ответа сервера, создание классов
-  const message = response;
+  const message = response.body;
   const name = getName(message);
   console.log(name);
   const text = getText(message);
