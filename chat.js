@@ -39,7 +39,7 @@ function render(messages) { // Обновляем чат после очистк
   console.log("CHAT:", chat);
   const parsed = Object.values(messages).map((item) => getDataDiv(item));
   console.log("Parsed: ", parsed);
-  parsed.forEach((i) => chat.appendChild(i));
+  parsed.forEach((i) => document.body.getElementsByClassName('chat-body')[0].append(i));
 }
 
 function scrollChatOnBottom() {
