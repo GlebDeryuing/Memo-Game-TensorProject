@@ -37,8 +37,8 @@ function render(messages) {
 
   const chat = document.body.getElementsByClassName('chat-body');
 
-  const divs = Object.values(messages).map((item) => getDataDiv(item));
-  divs.forEach((elem) => chat.append(elem));
+  Object.values(messages).map((item) => getDataDiv(item))
+    .forEach((elem) => chat.append(elem));
 }
 
 function scrollChatOnBottom() {
