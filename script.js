@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
     })
-    document.addEventListener('submit', function() {
+    const chat = document.getElementsByClassName('chat-bottom');
+    chat.addEventListener('submit', function() {
         sendButtonClick();
       });
 });
