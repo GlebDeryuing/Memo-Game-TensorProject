@@ -27,13 +27,14 @@ function render(messages) {
 
   const chat = document.getElementsByClassName('chat-body');
 
-  messages.map((item) => {
-    const name = getName(item);
-    const text = getText(item);
-    const className = item.isMine ? 'my-message' : 'message';
-    return createDiv(className, text, name);
-  });
-  messages.forEach((elem) => chat.appendChild(elem));
+  messages
+    .map((item) => {
+      const name = getName(item);
+      const text = getText(item);
+      const className = item.isMine ? 'my-message' : 'message';
+      return createDiv(className, text, name);
+    })
+    .forEach((elem) => chat.appendChild(elem));
 }
 
 export function getMessages() {
@@ -74,7 +75,7 @@ export function authorize() {
 }
 
 export function sendButtonClick() {
-  let text = document.getElementById('#');
+  const text = document.getElementById('#');
   if (text.value) {
     sendMessage(text.value).then(() => {
       text.value = '';
