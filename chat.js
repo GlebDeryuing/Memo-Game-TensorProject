@@ -12,7 +12,6 @@ function createDiv(className, text, author) { // Создает дивы из р
   const userName = document.createElement('h3');
   const message = document.createElement('p');
   div.className = className;
-  div.textContent = text;
   userName.textContent = author;
   message.textContent = text;
   div.appendChild(userName).appendChild(message);
