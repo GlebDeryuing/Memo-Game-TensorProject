@@ -1,6 +1,6 @@
 const request = require('superagent');
 
-function requestMessages(requestData) {
+/*function requestMessages(requestData) {
   return request
     .post('/api/messages')
     .set('Content-Type', 'application/json')
@@ -16,7 +16,7 @@ function sendMessage(text) {
     }),
   });
 }
-
+*/
 export function authorize() {
   request
     .post('/api/users')
@@ -38,7 +38,7 @@ export function authorize() {
     });
     */
 }
-
+/*
 export function sendButtonClick() {
   const chatArea = document.body.getElementsByClassName('chat-send');
   console.log('Chat Area: ', chatArea);
@@ -52,4 +52,4 @@ export function sendButtonClick() {
       });
     }
  // };
-}
+}*/
