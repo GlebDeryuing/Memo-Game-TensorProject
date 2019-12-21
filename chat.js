@@ -1,4 +1,4 @@
-const request = require('./node_modules/superagent');
+const request = require('superagent');
 
 function requestMessages(requestData) {
   return request
