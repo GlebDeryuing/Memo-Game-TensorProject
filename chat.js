@@ -24,7 +24,7 @@ const getText = (message) => message.text;
 const getTime = (message) => message.time;
 const getGame = (message) => message.game;
 
-function takeData(response) {
+function getDataDiv(response) {
   const message = response;
   const name = getName(message);
   const text = getText(message);
@@ -37,9 +37,8 @@ function render(messages) {
 
   const chat = document.getElementsByClassName('chat-body');
 
-  messages
-    .map((item) => takeData(item))
-    .forEach((elem) => chat.appendChild(elem));
+  const divs = messages.map((item) => getDataDiv(item));
+  divs.forEach((elem) => chat.appendChild(elem));
 }
 
 function scrollChatOnBottom() {
@@ -51,7 +50,6 @@ export function getMessages() {
   return request
     .get('/api/messages')
     .set('Content-Type', 'application/json')
-    .then((response) => JSON.parse(response))
     .then(render)
     .then(scrollChatOnBottom);
 }
