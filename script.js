@@ -2,10 +2,6 @@ import { authorize, sendButtonClick } from './chat';
 
 authorize();
 
-document.addEventListener('submit', function() {
-  sendButtonClick();
-});
-
 var memo = document.querySelector('.memo'),
     selectedId = -1,
     playingDivs = [],
@@ -93,6 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
     })
+    document.addEventListener('submit', function() {
+        sendButtonClick();
+      });
 });
 
 

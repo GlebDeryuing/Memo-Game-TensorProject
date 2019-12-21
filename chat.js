@@ -22,7 +22,7 @@ export function authorize() {
     .post('/api/users')
     .set('Content-Type', 'application/json')
     .send({ name: 'lol' })
-    .then(console.log('ready!'))
+    .then(console.log('authorized!'))
 /*    .then((res) => {
       const sid = JSON.parse(res.body.Cookie.sid);
       console.log(sid);
