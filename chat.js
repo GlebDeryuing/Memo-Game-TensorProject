@@ -23,10 +23,10 @@ export function authorize() {
     .set('Content-Type', 'application/json')
     .send({ name: 'lol' })
     .then(console.log('ready!'))
-    .then((res) => {
+/*    .then((res) => {
       const sid = JSON.parse(res.body.Cookie.sid);
       console.log(sid);
-    })
+    }) */
     .catch((err) => console.log(err));
 
 /*  request
