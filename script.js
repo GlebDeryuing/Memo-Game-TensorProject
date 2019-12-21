@@ -1,7 +1,5 @@
 import { authorize, sendButtonClick } from './chat';
 
-authorize();
-
 var memo = document.querySelector('.memo'),
     selectedId = -1,
     playingDivs = [],
@@ -14,6 +12,7 @@ var memo = document.querySelector('.memo'),
     newCountFields = 16;
 
 document.addEventListener('DOMContentLoaded', function() {
+    authorize(); // A.N.K.
     generator(countFields);
 
     memo.addEventListener('click', function(e) {
