@@ -35,7 +35,7 @@ function getDataDiv(response) {
 function render(messages) {
   removeAll();
 
-  const chat = document.getElementByClassName('chat-body');
+  const chat = document.body.getElementsByClassName('chat-body');
 
   const divs = Object.values(messages).map((item) => getDataDiv(item));
   divs.forEach((elem) => chat.appendChild(elem));
@@ -68,20 +68,7 @@ export function authorize() {
     .set('Content-Type', 'application/json')
     .send({ name: 'lol' })
     .then(console.log('authorized!'))
-  /*    .then((res) => {
-      const sid = JSON.parse(res.body.Cookie.sid);
-      console.log(sid);
-    }) */
     .catch((err) => console.log(err));
-
-/*  request
-    .get('/api/users')
-    .set('Content-Type', 'application/json')
-    .then((res) => {
-      const users = JSON.parse(res.body);
-      console.log(users);
-    });
-    */
 }
 
 export function sendButtonClick() {
