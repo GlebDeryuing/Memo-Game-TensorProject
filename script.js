@@ -8,6 +8,7 @@ var memo = document.querySelector('.memo'),
     level = document.querySelectorAll('.modal-block__level'),
     refresh = document.querySelector('.refresh'),
     settings = document.querySelector('.settings'),
+    exit = document.querySelectorAll('.exit'),
     countFields = 16,
     newCountFields = 16;
 
@@ -51,6 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    exit.forEach((e) =>
+        e.addEventListener('click', () => {
+            windowModal.style.display = 'none';
+            var windows = document.querySelectorAll('.modal-message')
+            windows.forEach((e) => {
+                e.style.display = 'none';
+            })
+        }))
     settings.addEventListener('click', () => {
         //Открытие модального окна с выборами уровня сложности
         windowModal.style.display = 'flex';
