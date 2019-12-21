@@ -7,12 +7,41 @@ function removeAll() {
   allMineMessages.forEach((message) => message.remove());
 }
 
-function updateChat() {
-  request
+function createDiv(className, text, author) {
+  const div = document.createElement('div');
+  const userName = document.createElement('h3');
+  const message = document.createElement('p');
+  div.className = className;
+  div.textContent = text;
+  userName.textContent = author;
+  message.textContent = text;
+  div.appendChild(userName).appendChild(message);
+  return div;
+}
+
+const getName = (message) => message.name;
+const getText = (message) => message.text;
+
+function render(messages) {
+  removeAll();
+
+  const chat = document.getElementsByClassName('chat-body');
+
+  messages.map((item) => {
+    const name = getName(item);
+    const text = getText(item);
+    const className = item.isMine ? 'my-message' : 'message';
+    return createDiv(className, text, name);
+  });
+  messages.forEach((elem) => chat.appendChild(elem));
+}
+
+export function getMessages() {
+  return request
     .get('/api/messages')
     .set('Content-Type', 'application/json')
-    .then(removeAll)
-    .catch((err) => console.log(err));
+    .then((response) => JSON.parse(response))
+    .then(render);
 }
 
 function sendMessage(message) {
@@ -20,7 +49,6 @@ function sendMessage(message) {
     .post('/api/messages')
     .set('Content-Type', 'application/json')
     .send({ text: message })
-    .then((response) => JSON.stringify(response))
     .catch((err) => console.log(err));
 }
 
@@ -48,14 +76,11 @@ export function authorize() {
 
 export function sendButtonClick() {
   let text = document.getElementById('#');
-  // chatArea.getElementById('send').onClick = function () {
-  console.log('TEXT: ', text.value);
   if (text.value) {
     sendMessage(text.value).then(() => {
       text.value = '';
     });
     console.log('text was sent');
-    updateChat();
+    getMessages();
   }
-  // };
 }

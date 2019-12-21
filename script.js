@@ -1,4 +1,4 @@
-import { authorize, sendButtonClick } from './chat';
+import { authorize, sendButtonClick, getMessages } from './chat';
 
 var memo = document.querySelector('.memo'),
     selectedId = -1,
@@ -92,6 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
     sendButton.addEventListener('click', () => {
         sendButtonClick();
       });
+
+      setInterval(getMessages, 2000);
 });
 
 
