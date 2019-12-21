@@ -1,5 +1,14 @@
 const request = require('superagent');
 
+function timeConverter(response) {
+  const a = new Date(response * 1000);
+  const hour = a.getHours();
+  const min = a.getMinutes();
+  const sec = a.getSeconds();
+  const time = `${hour}:${min}:${sec}`;
+  return time;
+}
+
 function removeAll() { // Очистка списка сообщений для вставки последних
   const allMessages = document.querySelectorAll('.message');
   const allMineMessages = document.querySelectorAll('.my-message');
@@ -7,14 +16,16 @@ function removeAll() { // Очистка списка сообщений для 
   allMineMessages.forEach((message) => message.remove());
 }
 
-function createDiv(className, text, author) { // Создает дивы из распарсенных данных
+function createDiv(className, text, author, time) { // Создает дивы из распарсенных данных
   const div = document.createElement('div');
   const userName = document.createElement('h3');
+  const date = document.createElement('span');
   const message = document.createElement('p');
   div.className = className;
   userName.textContent = author;
+  date.textContent = timeConverter(time);
   message.textContent = text;
-  div.appendChild(userName).appendChild(message);
+  div.appendChild(userName).appendChild(date).appendChild(message);
   return div;
 }
 
@@ -27,8 +38,9 @@ function getDataDiv(response) { // Парсинг ответа сервера, �
   const message = response;
   const name = getName(message);
   const text = getText(message);
+  const time = getTime(message);
   const className = message.isMine ? 'my-message' : 'message';
-  return createDiv(className, text, name);
+  return createDiv(className, text, name, time);
 }
 
 function render(messages) { // Обновляем чат после очистки, вставляя последние сообщения
