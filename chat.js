@@ -1,9 +1,10 @@
 const request = require('superagent');
 
 function removeAll() {
-  const chat = document.querySelectorAll('.message');
-  console.log(chat);
-  chat.forEach((message) => message.remove());
+  const allMessages = document.querySelectorAll('.message');
+  const allMineMessages = document.querySelectorAll('.my-message');
+  allMessages.forEach((message) => message.remove());
+  allMineMessages.forEach((message) => message.remove());
 }
 
 function updateChat() {
