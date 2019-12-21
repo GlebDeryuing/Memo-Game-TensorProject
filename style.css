@@ -55,73 +55,70 @@ button:active {
     outline: none;
 }
 
-.memo {
-    background: #fff;
-    border-radius: 10px;
-    /**Подобрать**/
-    height: 650px;
-    width: 650px;
-    margin: 7px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-}
-
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
-    /* left:100px;
-    top:30px; */
-    /* margin: 7px;
-    padding: 4px; */
     width: 100vw;
     height: 100vh;
-    /* height: 650px;
-    width: 650px; */
     overflow: auto;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(228, 249, 245, 0.8);
     align-items: center;
+}
+
+.modal img {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    height: 1vw;
+    width: 1vw;
 }
 
 .modal-block {
+    position: relative;
+    background: #fff;
     display: none;
     align-self: center;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    margin-left: 34vw;
+    width: 30%;
+    height: 80%;
+    padding: 1vw;
 }
 
 .modal-block__level {
-    font-size: 30px;
+    margin: 2%;
+    font-size: 20px;
     color: rgb(255, 255, 255);
-    background-color: #0a6a6d;
+    background-color: #11999e;
     padding: 30px;
     border: none;
     border-radius: 10px;
+    transition: background 0.3s;
 }
 
 .modal-block__level:hover {
-    background-color: #074c4e;
+    background: #106d70;
 }
 
 .modal-message {
-    width: 400px;
-    /* height: 200px; */
-    padding: 15px;
-    border: 1px solid rgb(95, 95, 95);
+    position: relative;
+    background-color: #fff;
+    width: 30%;
+    height: 80%;
+    padding: 1vw;
     margin: auto;
     display: none;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(255, 255, 255);
 }
 
 .modal-message__header {
-    font-size: 25px;
+    font-size: 20px;
     color: #40514e;
     text-align: center;
     padding: 15px;
@@ -132,23 +129,34 @@ button:active {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    padding: 15px;
+    padding: 5%;
+    height: 5vh;
 }
 
 .modal-message-content button {
-    width: 90px;
-    height: 60px;
+    height: 100%;
+    width: 30%;
     background-color: #11999e;
     color: rgb(255, 255, 255);
-    font-size: 20px;
-    /* padding: 20px 30px; */
+    font-size: 15px;
     text-align: center;
     border: none;
-    border-radius: 10px;
+    border-radius: 5%;
 }
 
 .modal-message-content button:hover {
-    background-color: #0d7579;
+    background-color: #106d70;
+}
+
+.memo {
+    background: #fff;
+    border-radius: 10px;
+    height: 650px;
+    width: 650px;
+    margin: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .memo .selected,
