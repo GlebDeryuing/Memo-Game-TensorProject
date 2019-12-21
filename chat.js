@@ -25,7 +25,7 @@ const getTime = (message) => message.time;
 const getGame = (message) => message.game;
 
 function getDataDiv(response) { // Парсинг ответа сервера, создание классов
-  const message = response.body;
+  const message = response;
   const name = getName(message);
   console.log(name);
   const text = getText(message);
@@ -51,6 +51,7 @@ export function getMessages() { // Получить последние сооб�
   return request
     .get('/api/messages')
     .set('Content-Type', 'application/json')
+    .then((response) => response.body)
     .then(render);
 }
 
