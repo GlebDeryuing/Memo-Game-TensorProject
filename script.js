@@ -90,8 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     const sendButton = document.getElementById('send'); // A.N.K.
     sendButton.addEventListener('click', () => {
-        const message = document.getElementById('#').value;
-        sendButtonClick(message);
+        sendButtonClick();
       });
 });
 

@@ -35,15 +35,15 @@ export function authorize() {
     */
 }
 
-export function sendButtonClick(message) {
-  const text = message;
+export function sendButtonClick() {
+  const text = document.getElementById('#').value;
   // chatArea.getElementById('send').onClick = function () {
   console.log('TEXT: ', text);
   if (text) {
-    console.log('text was sent');
     requestMessages(text).then(() => {
       text = '';
     });
+    console.log('text was sent');
   }
   // };
 }
