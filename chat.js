@@ -42,7 +42,7 @@ export function authorize() {
 export function sendButtonClick() {
   const chatArea = document.body.getElementsByClassName('chat-send');
   console.log('Chat Area: ', chatArea);
-  chatArea.button.onclick = function () {
+  chatArea.getElementById('send').onclick = function () {
     const text = chatArea.getElementById('#').value;
     console.log('TEXT: ', text);
     if (text) {
