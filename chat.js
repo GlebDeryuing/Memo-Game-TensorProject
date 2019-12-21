@@ -39,8 +39,8 @@ export function authorize() {
     */
 }
 
-export function sendButtonClick() {
-  const text = document.getElementsById('#').value;
+export function sendButtonClick(message) {
+  const text = message;
   //chatArea.getElementById('send').onClick = function () {
     console.log('TEXT: ', text);
     if (text) {
