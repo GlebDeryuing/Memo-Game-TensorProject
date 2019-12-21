@@ -40,14 +40,13 @@ export function authorize() {
 }
 
 export function sendButtonClick() {
-  const chatArea = document.body.getElementsByClassName('chat-send');
+  const text = document.body.getElementsById('#').value;
   //chatArea.getElementById('send').onClick = function () {
-    const text = chatArea.firsChild.value;
     console.log('TEXT: ', text);
     if (text) {
       console.log('text was sent');
       sendMessage(text).then(() => {
-        chatArea.firsChild.value = '';
+        text = '';
       });
     }
  // };
