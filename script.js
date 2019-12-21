@@ -89,10 +89,10 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         })
     })
-    const sendButton = document.getElementById('send');
+    /*const sendButton = document.getElementById('send');
     sendButton.addEventListener('submit', function() {
         sendButtonClick();
-      });
+      });*/
 });
 
 
