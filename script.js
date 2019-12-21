@@ -1,5 +1,12 @@
 import { authorize, sendButtonClick } from './chat';
 
+authorize();
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('click!');
+  sendButtonClick();
+});
+
 var memo = document.querySelector('.memo'),
     selectedId = -1,
     playingDivs = [],
@@ -165,9 +172,3 @@ function resize() {
         blocks[index].style.width = "calc(" + size + "% - " + padd + "px)";
     };
 }
-
-authorize();
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('click!');
-    sendButtonClick();
-});
