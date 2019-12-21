@@ -35,7 +35,7 @@ function getDataDiv(response) {
 function render(messages) {
   removeAll();
 
-  const chat = document.getElementsByClassName('chat-body');
+  const chat = document.getElementByClassName('chat-body');
 
   const divs = Object.values(messages).map((item) => getDataDiv(item));
   divs.forEach((elem) => chat.appendChild(elem));
