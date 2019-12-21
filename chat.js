@@ -1,7 +1,7 @@
 const request = require('superagent');
 
 function removeAll() {
-  const chat = document.body.querySelector('message');
+  const chat = document.body.querySelector('.message');
   console.log(chat);
   /*if (chat) {
     chat.forEach((message) => message.remove);
