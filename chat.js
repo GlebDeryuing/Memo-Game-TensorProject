@@ -21,6 +21,16 @@ function createDiv(className, text, author) {
 
 const getName = (message) => message.name;
 const getText = (message) => message.text;
+const getTime = (message) => message.time;
+const getGame = (message) => message.game;
+
+function takeData(response) {
+  const message = response;
+  const name = getName(message);
+  const text = getText(message);
+  const className = message.isMine ? 'my-message' : 'message';
+  return createDiv(className, text, name);
+}
 
 function render(messages) {
   removeAll();
@@ -28,20 +38,21 @@ function render(messages) {
   const chat = document.getElementsByClassName('chat-body');
 
   messages
-    .map((item) => {
-      const name = getName(item);
-      const text = getText(item);
-      const className = item.isMine ? 'my-message' : 'message';
-      return createDiv(className, text, name);
-    })
+    .map((item) => takeData(item))
     .forEach((elem) => chat.appendChild(elem));
+}
+
+function scrollChatOnBottom() {
+  const element = document.body.querySelector('.chat-body');
+  element.scrollTop = element.scrollHeight;
 }
 
 export function getMessages() {
   return request
     .get('/api/messages')
     .set('Content-Type', 'application/json')
-    .then(render);
+    .then(render)
+    .then(scrollChatOnBottom);
 }
 
 function sendMessage(message) {
