@@ -51,7 +51,9 @@ export function sendButtonClick() {
   // chatArea.getElementById('send').onClick = function () {
   console.log('TEXT: ', text);
   if (text) {
-    sendMessage(text).then(() => '');
+    sendMessage(text).then(() => {
+      text = '';
+    });
     console.log('text was sent');
     updateChat();
   }
