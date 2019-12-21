@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedId = playingDivs.indexOf(targ);
             } else {
                 var same = check(selectedId, playingDivs.indexOf(targ));
-                lastTarg = playingDivs[selectedId];
+                var lastTarg = playingDivs[selectedId];
                 selectedId = -1;
                 canClick = false;
                 setTimeout(() => {
