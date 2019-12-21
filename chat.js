@@ -3,7 +3,7 @@ const request = require('superagent');
 function removeAll() {
   const chat = document.body.querySelector('.message');
   console.log(chat);
-  chat.forEach((message) => message.remove);
+  chat.foreach((message) => message.remove);
 }
 
 function updateChat() {
