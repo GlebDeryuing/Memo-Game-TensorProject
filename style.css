@@ -55,8 +55,17 @@ button:active {
     outline: none;
 }
 
-.modal {
+#myModal{
     display: none;
+    background-color: rgba(228, 249, 245, 0.8);
+}
+
+#myModalFirst{
+    display: flex;
+    background-color: rgb(228, 249, 245);
+}
+
+.modal {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -64,7 +73,6 @@ button:active {
     width: 100vw;
     height: 100vh;
     overflow: auto;
-    background-color: rgba(228, 249, 245, 0.8);
     align-items: center;
 }
 
@@ -76,32 +84,38 @@ button:active {
     width: 1vw;
 }
 
-.modal-block {
+.modal-block{
+    display: none;
+    justify-content: center;
+    padding: 1vw;
+    height: 80%;
+}
+
+.modal-block, #modalAuth {
     position: relative;
     background: #fff;
-    display: none;
     align-self: center;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin-left: 34vw;
     width: 30%;
-    height: 80%;
-    padding: 1vw;
 }
 
-.modal-block__level {
+.modal-block__level, #startGame {
     margin: 2%;
-    font-size: 20px;
+    font-size: 15px;
     color: rgb(255, 255, 255);
     background-color: #11999e;
-    padding: 30px;
     border: none;
     border-radius: 10px;
     transition: background 0.3s;
 }
 
-.modal-block__level:hover {
+.modal-block__level{
+    padding: 10%;
+}
+
+.modal-block__level:hover, #startGame:hover {
     background: #106d70;
 }
 
@@ -148,6 +162,26 @@ button:active {
     background-color: #106d70;
 }
 
+#modalAuth{
+    display: flex;
+    height: 60%;
+    justify-content: space-around;
+}
+
+#userName{
+    width: 80%;
+    padding: 3%;
+    font-size: 15px;
+    border: 1px solid rgb(138, 138, 138);
+    outline:none;
+    box-sizing: unset;
+}
+
+#startGame{
+    justify-self: flex-end;
+    padding: 5% 10%;
+}
+
 .memo {
     background: #fff;
     border-radius: 10px;
@@ -158,7 +192,6 @@ button:active {
     flex-wrap: wrap;
     align-content: flex-start;
 }
-
 .memo .selected,
 .memo .defeated {
     display: flex;

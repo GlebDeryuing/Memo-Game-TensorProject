@@ -1,19 +1,42 @@
-import { authorize, sendButtonClick, getMessages } from './chat';
+// import { authorize, sendButtonClick, getMessages } from './chat';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
 let playingDivs = [];
 let canClick = true;
-const windowModal = document.querySelector('.modal');
+const windowModal = document.querySelector('#myModal');
 const level = document.querySelectorAll('.modal-block__level');
 const refresh = document.querySelector('.refresh');
 const settings = document.querySelector('.settings');
 const exit = document.querySelectorAll('.exit');
 const countFields = 16;
 let newCountFields = 16;
+let userName = document.querySelector('#userName');
 
 document.addEventListener('DOMContentLoaded', () => {
-  authorize();
+  let auth = document.querySelector('#startGame');
+  auth.addEventListener('click', ()=>{
+    let res = inputValidate();
+    if(res){
+    auth.style.display = 'none';
+    let modal = document.querySelector('#myModalFirst');
+    modal.style.display = 'none';
+    }
+  });
+
+  userName.addEventListener('input', ()=>
+  {
+    // if (userName.value.length < 4){
+    //   userName.style.border = '3px solid rgba(255, 0, 0, 0.4)';
+    //   return false;
+    // }
+    // else{
+    //  userName.style.border = '1px solid rgb(138, 138, 138)';
+    //  return true;
+    // }
+    inputValidate()
+  })
+  // authorize();
   generator(countFields);
 
   memo.addEventListener('click', (e) => {
@@ -173,5 +196,17 @@ function resize() {
     blocks[index].style.margin = `${padd / 2}px`;
     blocks[index].style.height = `calc(${size}% - ${padd}px)`;
     blocks[index].style.width = `calc(${size}% - ${padd}px)`;
+  }
+}
+
+function inputValidate(){
+  let val = userName.value;
+  if (val.length < 4){
+    userName.style.border = '3px solid rgba(255, 0, 0, 0.4)';
+    return false
+  }
+  else {
+    userName.style.border = '1px solid rgb(138, 138, 138)';
+    return true
   }
 }
