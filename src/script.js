@@ -3,6 +3,7 @@ import {
   authorize, sendButtonClick, getMessages, deleteUser,
 } from './chat';
 import updateUsers from './users';
+import * as record from './records';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   userName.addEventListener('input', () => inputValidate());
+  const userId = record.createId(); // Запись игры (получаем ID с сервера)
 
   generator(countFields);
 
@@ -189,6 +191,17 @@ document.addEventListener('DOMContentLoaded', () => {
   Buttons.forEach((e) => {
     e.addEventListener('click', (event) => {
       if (event.target.id === 'yesRefresh' || event.target.id === 'noWinning') {
+        record.add(userId, 'Win'); // points?
+        const records = record.getAll();
+        records.forEach((rec) => {
+          // eslint-disable-next-line no-alert
+          alert(`Best players:\n
+          Name: ${rec.user}, 
+          game: ${rec.game}, 
+          score: ${rec.score}, 
+          time: ${rec.time}.
+          `);
+        });
         while (memo.firstChild) memo.removeChild(memo.firstChild);
         generator(newCountFields);
       }
