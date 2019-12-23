@@ -11,7 +11,7 @@ const settings = document.querySelector('.settings');
 const exit = document.querySelectorAll('.exit');
 const countFields = 16;
 let newCountFields = 16;
-const userName = document.getElementById('#userName');
+const userName = document.querySelector('#userName');
 
 document.addEventListener('DOMContentLoaded', () => {
   const auth = document.querySelector('#startGame');
