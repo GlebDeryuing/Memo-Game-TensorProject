@@ -1,4 +1,4 @@
-import { authorize, sendButtonClick, getMessages } from './chat';
+import { sendButtonClick, getMessages } from './chat';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   userName.addEventListener('input', () => inputValidate());
+
   generator(countFields);
 
   memo.addEventListener('click', (e) => {
