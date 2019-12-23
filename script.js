@@ -1,4 +1,4 @@
- import { authorize, sendButtonClick, getMessages } from './chat';
+import { authorize, sendButtonClick, getMessages } from './chat';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   memo.addEventListener('click', (e) => {
     const targ = e.target.nodeName === 'DIV' ? e.target : e.target.parentNode;
-    if (canClick && targ.className != 'selected' && targ.className != 'defeated' && targ.className != 'memo' && targ.className != 'setting') {
+    if (canClick && targ.className !== 'selected' && targ.className !== 'defeated' && targ.className !== 'memo' && targ.className !== 'setting') {
       targ.className = 'selected';
       const img = document.createElement('img');
       img.src = `image/cards/${playingCards[playingDivs.indexOf(targ)].value}.svg`;
