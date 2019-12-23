@@ -3,4 +3,5 @@
 [![Build Status](https://travis-ci.com/ankoz2000/Memo-Game-TensorProject.svg?branch=master)](https://travis-ci.com/ankoz2000/Memo-Game-TensorProject)
 
 Clone repo and execute this with CLI at downloaded directive:
-**npm run build**
+
+    npm run build
