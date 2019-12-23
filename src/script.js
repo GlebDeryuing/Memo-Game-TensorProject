@@ -1,4 +1,4 @@
-import { sendButtonClick, getMessages } from './chat';
+import { authorize, sendButtonClick, getMessages } from './chat';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
