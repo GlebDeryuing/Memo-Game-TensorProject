@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
-import { authorize, sendButtonClick, getMessages, deleteUser } from './chat';
+import {
+  authorize, sendButtonClick, getMessages, deleteUser,
+} from './chat';
 import updateUsers from './users';
 
 const memo = document.querySelector('.memo');
