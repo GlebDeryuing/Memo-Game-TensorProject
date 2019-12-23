@@ -17,6 +17,7 @@ const exit = document.querySelectorAll('.exit');
 const countFields = 16;
 let newCountFields = 16;
 const userName = document.querySelector('#userName');
+let userId = 0;
 
 let playingCards = [];
 let freeCounter = 0;
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   userName.addEventListener('input', () => inputValidate());
-  const userId = record.createId(); // Запись игры (получаем ID с сервера)
+  userId = record.createId(); // Запись игры (получаем ID с сервера)
 
   generator(countFields);
 
@@ -201,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.style.display = 'none';
       });
     });
-    record.add(userId, 'Win'); // points?
+    record.add(userId, 10); // points?
     const records = record.getAll();
     Object.values(records).forEach((rec) => {
       // eslint-disable-next-line no-alert
