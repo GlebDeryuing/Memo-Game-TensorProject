@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     record.add(userId, 'Win'); // points?
     const records = record.getAll();
-    records.forEach((rec) => {
+    Object.values(records).forEach((rec) => {
       // eslint-disable-next-line no-alert
       alert(`Best players:\n
       Name: ${rec.user}, 
