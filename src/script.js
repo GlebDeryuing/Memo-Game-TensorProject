@@ -202,18 +202,20 @@ document.addEventListener('DOMContentLoaded', () => {
         e.style.display = 'none';
       });
     });
-    record.add(userId, 10); // points?
-    const records = record.getAll();
-    Object.values(records).forEach((rec) => {
-      // eslint-disable-next-line no-alert
-      alert(`Best players:\n
-      Name: ${rec.user}, 
-      game: ${rec.game}, 
-      score: ${rec.score}, 
-      time: ${rec.time}.
-      `);
-    });
   });
+
+  record.add(userId, 10); // points?
+  const records = record.getAll();
+  Object.values(records).forEach((rec) => {
+    // eslint-disable-next-line no-alert
+    alert(`Best players:\n
+    Name: ${rec.user}, 
+    game: ${rec.game}, 
+    score: ${rec.score}, 
+    time: ${rec.time}.
+    `);
+  });
+
   const sendButton = document.getElementById('send');
   sendButton.addEventListener('click', () => {
     sendButtonClick();
