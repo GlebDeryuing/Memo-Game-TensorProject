@@ -22,11 +22,13 @@ function createDiv(className, text, author, time) { // Создает дивы �
   const userName = document.createElement('h3');
   const date = document.createElement('span');
   const message = document.createElement('p');
+  const space = document.createElement('span');
   div.className = className;
   userName.textContent = author;
   date.textContent = timeConverter(time);
   message.textContent = text;
-  div.appendChild(userName).appendChild(date).appendChild(message);
+  space.textContent = '  ';
+  div.appendChild(userName).appendChild(space).appendChild(date).appendChild(message);
   return div;
 }
 
@@ -78,6 +80,11 @@ export function authorize(userName) {
     .set('Content-Type', 'application/json')
     .send({ name: userName })
     .catch((err) => console.log(err));
+}
+
+export function deleteUser() {
+  request
+    .delete('/api/users');
 }
 
 export function sendButtonClick() { // Прослушка клика на кнопку отправки

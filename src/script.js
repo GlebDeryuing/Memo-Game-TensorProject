@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-import { authorize, sendButtonClick, getMessages } from './chat';
+import { authorize, sendButtonClick, getMessages, deleteUser } from './chat';
+import updateUsers from './users';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
@@ -158,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     windows.forEach((e) => {
       e.style.display = 'none';
     });
+    deleteUser();
   }));
   settings.addEventListener('click', () => {
     // Открытие модального окна с выборами уровня сложности
@@ -202,4 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   setInterval(getMessages, 2000);
+  setInterval(updateUsers, 3000);
 });
