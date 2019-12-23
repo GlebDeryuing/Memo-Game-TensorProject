@@ -185,23 +185,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Появление модального окна с всплывающим блоком
     windowModal.style.display = 'flex';
     document.querySelector('#modalRefresh').style.display = 'flex';
+    record.add(userId, 'Win'); // points?
+    const records = record.getAll();
+    records.forEach((rec) => {
+      // eslint-disable-next-line no-alert
+      alert(`Best players:\n
+      Name: ${rec.user}, 
+      game: ${rec.game}, 
+      score: ${rec.score}, 
+      time: ${rec.time}.
+      `);
+    });
   });
 
   const Buttons = document.querySelectorAll('.modal-message-content');
   Buttons.forEach((e) => {
     e.addEventListener('click', (event) => {
       if (event.target.id === 'yesRefresh' || event.target.id === 'noWinning') {
-        record.add(userId, 'Win'); // points?
-        const records = record.getAll();
-        records.forEach((rec) => {
-          // eslint-disable-next-line no-alert
-          alert(`Best players:\n
-          Name: ${rec.user}, 
-          game: ${rec.game}, 
-          score: ${rec.score}, 
-          time: ${rec.time}.
-          `);
-        });
         while (memo.firstChild) memo.removeChild(memo.firstChild);
         generator(newCountFields);
       }
