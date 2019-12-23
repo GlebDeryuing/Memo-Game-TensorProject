@@ -185,17 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Появление модального окна с всплывающим блоком
     windowModal.style.display = 'flex';
     document.querySelector('#modalRefresh').style.display = 'flex';
-    record.add(userId, 'Win'); // points?
-    const records = record.getAll();
-    records.forEach((rec) => {
-      // eslint-disable-next-line no-alert
-      alert(`Best players:\n
-      Name: ${rec.user}, 
-      game: ${rec.game}, 
-      score: ${rec.score}, 
-      time: ${rec.time}.
-      `);
-    });
   });
 
   const Buttons = document.querySelectorAll('.modal-message-content');
@@ -211,6 +200,17 @@ document.addEventListener('DOMContentLoaded', () => {
       windows.forEach((e) => {
         e.style.display = 'none';
       });
+    });
+    record.add(userId, 'Win'); // points?
+    const records = record.getAll();
+    records.forEach((rec) => {
+      // eslint-disable-next-line no-alert
+      alert(`Best players:\n
+      Name: ${rec.user}, 
+      game: ${rec.game}, 
+      score: ${rec.score}, 
+      time: ${rec.time}.
+      `);
     });
   });
   const sendButton = document.getElementById('send');
