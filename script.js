@@ -1,4 +1,4 @@
-// import { authorize, sendButtonClick, getMessages } from './chat';
+ import { authorize, sendButtonClick, getMessages } from './chat';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
@@ -11,32 +11,21 @@ const settings = document.querySelector('.settings');
 const exit = document.querySelectorAll('.exit');
 const countFields = 16;
 let newCountFields = 16;
-let userName = document.querySelector('#userName');
+const userName = document.getElementById('#userName');
 
 document.addEventListener('DOMContentLoaded', () => {
-  let auth = document.querySelector('#startGame');
-  auth.addEventListener('click', ()=>{
-    let res = inputValidate();
-    if(res){
-    auth.style.display = 'none';
-    let modal = document.querySelector('#myModalFirst');
-    modal.style.display = 'none';
+  const auth = document.querySelector('#startGame');
+  auth.addEventListener('click', () => {
+    const res = inputValidate();
+    if (res) {
+      auth.style.display = 'none';
+      const modal = document.querySelector('#myModalFirst');
+      modal.style.display = 'none';
+      return authorize(userName.value);
     }
   });
 
-  userName.addEventListener('input', ()=>
-  {
-    // if (userName.value.length < 4){
-    //   userName.style.border = '3px solid rgba(255, 0, 0, 0.4)';
-    //   return false;
-    // }
-    // else{
-    //  userName.style.border = '1px solid rgb(138, 138, 138)';
-    //  return true;
-    // }
-    inputValidate()
-  })
-  // authorize();
+  userName.addEventListener('input', () => inputValidate());
   generator(countFields);
 
   memo.addEventListener('click', (e) => {
@@ -75,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  exit.forEach((e) => e.addEventListener('click', () => {
+  exit.forEach((event) => event.addEventListener('click', () => {
     windowModal.style.display = 'none';
     const windows = document.querySelectorAll('.modal-message');
     windows.forEach((e) => {
@@ -199,14 +188,13 @@ function resize() {
   }
 }
 
-function inputValidate(){
-  let val = userName.value;
-  if (val.length < 4){
+function inputValidate() {
+  const val = userName.value;
+  if (val.length < 4) {
     userName.style.border = '3px solid rgba(255, 0, 0, 0.4)';
-    return false
+    return false;
   }
-  else {
-    userName.style.border = '1px solid rgb(138, 138, 138)';
-    return true
-  }
+
+  userName.style.border = '1px solid rgb(138, 138, 138)';
+  return true;
 }

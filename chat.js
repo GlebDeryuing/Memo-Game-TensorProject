@@ -59,12 +59,11 @@ function sendMessage(message) { // Отправить запрос с сообщ
     .catch((err) => console.log(err));
 }
 
-export function authorize() {
+export function authorize(userName) {
   request
     .post('/api/users')
     .set('Content-Type', 'application/json')
-    .send({ name: 'lol' })
-    .then(console.log('authorized!'))
+    .send({ name: userName })
     .catch((err) => console.log(err));
 }
 
