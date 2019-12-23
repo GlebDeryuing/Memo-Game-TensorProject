@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { authorize, sendButtonClick, getMessages } from './chat';
 
 const memo = document.querySelector('.memo');
@@ -13,6 +14,90 @@ const countFields = 16;
 let newCountFields = 16;
 const userName = document.querySelector('#userName');
 
+let playingCards = [];
+let freeCounter = 0;
+
+function objectCreation(value) {
+  const newobj = {
+    value,
+    passed: false,
+  };
+  return newobj;
+}
+
+function resize() {
+  const blocks = memo.children;
+  const size = 100 / Math.ceil(Math.sqrt(blocks.length));
+  const padd = window.innerWidth / 230;
+  memo.style.padding = `${padd / 2}px`;
+  for (let index = 0; index < blocks.length; index += 1) {
+    blocks[index].style.margin = `${padd / 2}px`;
+    blocks[index].style.height = `calc(${size}% - ${padd}px)`;
+    blocks[index].style.width = `calc(${size}% - ${padd}px)`;
+  }
+}
+
+function generator(count) {
+  playingCards = [];
+  playingDivs = [];
+  freeCounter = count;
+  for (let index = 0; index < count / 2; index += 1) {
+    playingCards.push(objectCreation(index));
+    playingCards.push(objectCreation(index));
+  }
+  for (let index = 0; index < playingCards.length; index += 1) {
+    const tempObj = playingCards[index];
+    const newRandom = Math.floor(Math.random() * (count - 1));
+    playingCards[index] = playingCards[newRandom];
+    playingCards[newRandom] = tempObj;
+  }
+  for (let index = 0; index < playingCards.length; index += 1) {
+    const field = document.createElement('div');
+    field.className = '';
+    playingDivs.push(field);
+    memo.appendChild(field);
+  }
+  resize();
+  // Создание окна меню без вложенных элементов
+  // var menu = document.createElement('div');
+  // menu.className = "setting";
+  // memo.appendChild(menu);
+}
+
+function check(a, b) {
+  const first = playingCards[a];
+  const second = playingCards[b];
+  if (!first.passed && !second.passed && first.value === second.value) {
+    freeCounter -= 2;
+    first.passed = true;
+    second.passed = true;
+    if (freeCounter === 0) {
+      // вывести победное окно
+
+      setTimeout(() => {
+        windowModal.style.display = 'flex';
+        const windowWinning = document.querySelector('#modalWinning');
+        windowWinning.style.display = 'flex';
+      }, 1000);
+
+      // windowWinning.firstChild.textContent = `Вы победили! Ваши очки: \n
+      // Хотите добавиться в таблицу лидеров?`;
+    }
+    return true;
+  } return false;
+}
+
+function inputValidate() {
+  const val = userName.value;
+  if (val.length < 4) {
+    userName.style.border = '3px solid rgba(255, 0, 0, 0.4)';
+    return false;
+  }
+
+  userName.style.border = '1px solid rgb(138, 138, 138)';
+  return true;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const auth = document.querySelector('#startGame');
   auth.addEventListener('click', () => {
@@ -23,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
       return authorize(userName.value);
     }
+    // eslint-disable-next-line no-alert
+    return alert('This user is authorized!');
   });
 
   userName.addEventListener('input', () => inputValidate());
@@ -80,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   level.forEach((e) => e.addEventListener('click', () => {
     const cnt = e.id;
+    // eslint-disable-next-line radix
     newCountFields = parseInt(cnt);
     windowModal.style.display = 'none';
     document.querySelector('.modal-block').style.display = 'none';
@@ -102,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       windowModal.style.display = 'none';
       const windows = document.querySelectorAll('.modal-message');
+      // eslint-disable-next-line no-shadow
       windows.forEach((e) => {
         e.style.display = 'none';
       });
@@ -114,88 +203,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(getMessages, 2000);
 });
-
-
-var playingCards = [];
-let freeCounter = 0;
-
-function objectCreation(value) {
-  const newobj = {
-    value,
-    passed: false,
-  };
-  return newobj;
-}
-
-function generator(count) {
-  playingCards = [];
-  playingDivs = [];
-  freeCounter = count;
-  for (let index = 0; index < count / 2; index++) {
-    playingCards.push(objectCreation(index));
-    playingCards.push(objectCreation(index));
-  }
-  for (let index = 0; index < playingCards.length; index++) {
-    const tempObj = playingCards[index];
-    const newRandom = Math.floor(Math.random() * (count - 1));
-    playingCards[index] = playingCards[newRandom];
-    playingCards[newRandom] = tempObj;
-  }
-  for (let index = 0; index < playingCards.length; index++) {
-    const field = document.createElement('div');
-    field.className = '';
-    playingDivs.push(field);
-    memo.appendChild(field);
-  }
-  resize();
-
-  // Создание окна меню без вложенных элементов
-  // var menu = document.createElement('div');
-  // menu.className = "setting";
-  // memo.appendChild(menu);
-}
-
-function check(a, b) {
-  const first = playingCards[a];
-  const second = playingCards[b];
-  if (!first.passed && !second.passed && first.value === second.value) {
-    freeCounter -= 2;
-    first.passed = true;
-    second.passed = true;
-    if (freeCounter === 0) {
-      // вывести победное окно
-
-      setTimeout(() => {
-        windowModal.style.display = 'flex';
-        const windowWinning = document.querySelector('#modalWinning');
-        windowWinning.style.display = 'flex';
-      }, 1000);
-
-      // windowWinning.firstChild.textContent = `Вы победили! Ваши очки: \n Хотите добавиться в таблицу лидеров?`;
-    }
-    return true;
-  } return false;
-}
-
-function resize() {
-  const blocks = memo.children;
-  const size = 100 / Math.ceil(Math.sqrt(blocks.length));
-  const padd = window.innerWidth / 230;
-  memo.style.padding = `${padd / 2}px`;
-  for (let index = 0; index < blocks.length; index++) {
-    blocks[index].style.margin = `${padd / 2}px`;
-    blocks[index].style.height = `calc(${size}% - ${padd}px)`;
-    blocks[index].style.width = `calc(${size}% - ${padd}px)`;
-  }
-}
-
-function inputValidate() {
-  const val = userName.value;
-  if (val.length < 4) {
-    userName.style.border = '3px solid rgba(255, 0, 0, 0.4)';
-    return false;
-  }
-
-  userName.style.border = '1px solid rgb(138, 138, 138)';
-  return true;
-}

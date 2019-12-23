@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const request = require('superagent');
 
 function timeConverter(response) {
@@ -32,7 +33,7 @@ function createDiv(className, text, author, time) { // Создает дивы �
 const getName = (message) => message.user;
 const getText = (message) => message.text;
 const getTime = (message) => message.time;
-const getGame = (message) => message.game;
+// const getGame = (message) => message.game;
 
 function getDataDiv(response) { // Парсинг ответа сервера, создание классов
   const message = response;
