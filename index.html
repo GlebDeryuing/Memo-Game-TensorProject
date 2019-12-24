@@ -15,16 +15,9 @@
         <div class="game">
             <div class="menu">
                 <button class="refresh"><img src="image/refresh.svg" alt="refresh"></button>
-                <button class="pause"><img src="image/pause.svg" alt="pause"></button>
                 <button class="settings"><img src="image/settings.svg" alt="settings"></button>
-                <button class="help"><img src="image/question.svg" alt="help"></button>
             </div>
             <div class="memo">
-
-
-
-                <!-- <div class="modal"></div> -->
-
             </div>
 
         </div>
@@ -100,10 +93,9 @@
         </div>
         <div id="modalWinning" class="modal-message">
             <img src="image/cancel.svg" alt="close" class="exit">
-            <div class="modal-message__header">Победа! Желаете добавить Ваш результат в таблицу лидеров?</div>
+            <div id="modalWinningMessage" class="modal-message__header"></div>
             <div id="modalWinningButtons" class="modal-message-content">
-                <button id="yesWinning">Да</button>
-                <button id="noWinning">Нет</button>
+                <button id="okWinning">Продолжить</button>
             </div>
         </div>
     </div>
@@ -114,9 +106,23 @@
             <button id="startGame">Начать</button>
         </div>
     </div>
+    <div id="listUsers">
+        <div id="listUsers-head">
+            <div class="listUsers-head__header">Сейчас онлайн</div>
+            <button id="listUsers-head__collapse">-</button>
+            <button>х</button>
+        </div>
+        <div id="listUsers-body">  
+            <div>user</div>
+            <div>user</div>
+            <div>user</div>
+            <div>user</div>
+            <div>user</div>
+            <div>user</div>
+        </div>
+    </div>
 
-
-    <script src= "./dist/bundle.js"></script>
+    <script src="dist/bundle.js"></script>
 </body>
 
 <script>
