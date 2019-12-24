@@ -3,7 +3,7 @@ const request = require('superagent');
 
 function removeAllUsers() {
   const users = document.querySelectorAll('.user');
-  users.forEach((user) => user.remove);
+  users.forEach((user) => user.remove());
 }
 
 function createDiv(className, user) {
@@ -16,7 +16,6 @@ function createDiv(className, user) {
 function addUsers(users) {
   removeAllUsers();
   const usersArea = document.body.querySelector('#listUsers-body');
-  console.log(usersArea);
   const parsed = Object.values(users).map((user) => createDiv('user', user.name));
   parsed.forEach((div) => usersArea.append(div));
 }
