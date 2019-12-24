@@ -2,7 +2,7 @@
 const request = require('superagent');
 
 function removeAllUsers() {
-  const users = document.querySelectorAll('.users');
+  const users = document.querySelectorAll('.user');
   users.forEach((user) => user.remove);
 }
 
@@ -10,12 +10,14 @@ function createDiv(className, user) {
   const div = document.createElement('div');
   div.className = className;
   div.textContent = user;
+  return div;
 }
 
 function addUsers(users) {
-  const usersArea = document.body.querySelector('#listUsers-body');
+  removeAllUsers();
+  const usersArea = document.body.getElementById('#listUsers-body');
 
-  users.forEach((user) => createDiv('.user', user))
+  Object.values(users).map((user) => createDiv('user', user.name))
     .forEach((div) => usersArea.append(div));
 }
 
@@ -23,9 +25,6 @@ export default function getUsers() {
   request
     .get('/api/users')
     .then((res) => res.body)
-    .then((users) => {
-      removeAllUsers();
-      addUsers(users.name);
-    })
+    .then(addUsers)
     .catch((err) => console.log(err));
 }

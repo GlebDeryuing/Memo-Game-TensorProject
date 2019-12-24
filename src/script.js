@@ -3,7 +3,6 @@ import {
   authorize, sendButtonClick, getMessages, deleteUser,
 } from './chat';
 import updateUsers from './users';
-import getUsers from './users';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
@@ -166,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!visible) {
       users.style.display = 'flex';
       visible = true;
-      setInterval(getUsers, 3000);
     } else if (visible) {
       users.style.display = 'none';
       visible = false;
