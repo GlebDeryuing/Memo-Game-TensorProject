@@ -13,7 +13,7 @@ function createDiv(className, user) {
 }
 
 function addUsers(users) {
-  const usersArea = document.body.getElementsByClassName('users-body');
+  const usersArea = document.body.querySelector('#listUsers-body');
 
   users.forEach((user) => createDiv('.user', user))
     .forEach((div) => usersArea.append(div));

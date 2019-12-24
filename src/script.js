@@ -3,11 +3,12 @@ import {
   authorize, sendButtonClick, getMessages, deleteUser,
 } from './chat';
 import updateUsers from './users';
+import getUsers from './users';
 
 const memo = document.querySelector('.memo');
 let selectedId = -1;
 let playingDivs = [];
-let listUsers = document.querySelector('#listUsers');
+const listUsers = document.querySelector('#listUsers');
 let canClick = true;
 let score = 0;
 const windowModal = document.querySelector('#myModal');
@@ -15,7 +16,7 @@ const level = document.querySelectorAll('.modal-block__level');
 const refresh = document.querySelector('.refresh');
 const settings = document.querySelector('.settings');
 const exit = document.querySelectorAll('.exit');
-let collapse = document.querySelector('#listUsers-head__collapse');
+const collapse = document.querySelector('#listUsers-head__collapse');
 const countFields = 16;
 let newCountFields = 16;
 let visible = true;
@@ -77,7 +78,7 @@ function check(a, b) {
     second.passed = true;
     if (freeCounter === 0) {
       // вывести победное окно
-      let message = document.querySelector('#modalWinningMessage');
+      const message = document.querySelector('#modalWinningMessage');
       message.textContent = `Победа! Количество ваших ходов: ${score}`;
       setTimeout(() => {
         windowModal.style.display = 'flex';
@@ -101,15 +102,17 @@ function inputValidate() {
 }
 
 
-
 dragElement(listUsers);
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "-head")) {
-    /* if present, the header is where you move the DIV from:*/
-    document.getElementById(elmnt.id + "-head").onmousedown = dragMouseDown;
+  let pos1 = 0;
+  let pos2 = 0;
+  let pos3 = 0;
+  let pos4 = 0;
+  if (document.getElementById(`${elmnt.id}-head`)) {
+    /* if present, the header is where you move the DIV from: */
+    document.getElementById(`${elmnt.id}-head`).onmousedown = dragMouseDown;
   } else {
-    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    /* otherwise, move the DIV from anywhere inside the DIV: */
     elmnt.onmousedown = dragMouseDown;
   }
 
@@ -131,12 +134,12 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    elmnt.style.top = `${elmnt.offsetTop - pos2}px`;
+    elmnt.style.left = `${elmnt.offsetLeft - pos1}px`;
   }
 
   function closeDragElement() {
-    /* stop moving when mouse button is released:*/
+    /* stop moving when mouse button is released: */
     document.onmouseup = null;
     document.onmousemove = null;
   }
@@ -158,17 +161,17 @@ document.addEventListener('DOMContentLoaded', () => {
   userName.addEventListener('input', () => inputValidate());
   generator(countFields);
 
-  collapse.addEventListener('click', ()=>{
-    let users = document.querySelector('#listUsers-body');
-    if(!visible){
+  collapse.addEventListener('click', () => {
+    const users = document.querySelector('#listUsers-body');
+    if (!visible) {
       users.style.display = 'flex';
       visible = true;
-    }
-    else if(visible){
+      setInterval(getUsers, 3000);
+    } else if (visible) {
       users.style.display = 'none';
       visible = false;
     }
-  })
+  });
 
   memo.addEventListener('click', (e) => {
     const targ = e.target.nodeName === 'DIV' ? e.target : e.target.parentNode;
