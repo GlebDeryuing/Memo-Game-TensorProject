@@ -17,6 +17,58 @@ main {
     align-items: center;
 }
 
+#listUsers{
+    z-index: 10;
+    position: absolute;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(73, 73, 73);
+    border: 1px solid #30e3ca;
+}
+
+#listUsers-head{
+    z-index: 11;
+    cursor: move;
+    background-color: #30e3ca;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bolder;
+    justify-content: space-between;
+}
+
+#listUsers-head button{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    justify-self: flex-end;
+}
+
+#listUsers-body{
+    
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#listUsers-body div{
+    font-size: 13px;
+    text-align: left;
+    padding: 10px;
+    justify-content: center;
+}
+
+#listUsers-body div:hover{
+    background-color: rgba(192, 231, 253, 0.8);
+}
+
 main,
 .game {
     display: flex;
@@ -67,7 +119,7 @@ button:active {
 
 .modal {
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     left: 0;
     top: 0;
     width: 100vw;
@@ -118,6 +170,7 @@ button:active {
 .modal-block__level:hover, #startGame:hover {
     background: #106d70;
 }
+
 
 .modal-message {
     position: relative;

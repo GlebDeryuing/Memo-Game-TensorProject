@@ -7,14 +7,18 @@ import updateUsers from './users';
 const memo = document.querySelector('.memo');
 let selectedId = -1;
 let playingDivs = [];
+let listUsers = document.querySelector('#listUsers');
 let canClick = true;
+let score = 0;
 const windowModal = document.querySelector('#myModal');
 const level = document.querySelectorAll('.modal-block__level');
 const refresh = document.querySelector('.refresh');
 const settings = document.querySelector('.settings');
 const exit = document.querySelectorAll('.exit');
+let collapse = document.querySelector('#listUsers-head__collapse');
 const countFields = 16;
 let newCountFields = 16;
+let visible = true;
 const userName = document.querySelector('#userName');
 
 let playingCards = [];
@@ -61,30 +65,25 @@ function generator(count) {
     memo.appendChild(field);
   }
   resize();
-  // Создание окна меню без вложенных элементов
-  // var menu = document.createElement('div');
-  // menu.className = "setting";
-  // memo.appendChild(menu);
 }
 
 function check(a, b) {
   const first = playingCards[a];
   const second = playingCards[b];
+  score += 1;
   if (!first.passed && !second.passed && first.value === second.value) {
     freeCounter -= 2;
     first.passed = true;
     second.passed = true;
     if (freeCounter === 0) {
       // вывести победное окно
-
+      let message = document.querySelector('#modalWinningMessage');
+      message.textContent = `Победа! Количество ваших ходов: ${score}`;
       setTimeout(() => {
         windowModal.style.display = 'flex';
         const windowWinning = document.querySelector('#modalWinning');
         windowWinning.style.display = 'flex';
       }, 1000);
-
-      // windowWinning.firstChild.textContent = `Вы победили! Ваши очки: \n
-      // Хотите добавиться в таблицу лидеров?`;
     }
     return true;
   } return false;
@@ -101,6 +100,48 @@ function inputValidate() {
   return true;
 }
 
+
+
+dragElement(listUsers);
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "-head")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "-head").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const auth = document.querySelector('#startGame');
   auth.addEventListener('click', () => {
@@ -114,10 +155,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // eslint-disable-next-line no-alert
     return alert('This user is authorized!');
   });
-
   userName.addEventListener('input', () => inputValidate());
-
   generator(countFields);
+
+  collapse.addEventListener('click', ()=>{
+    let users = document.querySelector('#listUsers-body');
+    if(!visible){
+      users.style.display = 'flex';
+      visible = true;
+    }
+    else if(visible){
+      users.style.display = 'none';
+      visible = false;
+    }
+  })
 
   memo.addEventListener('click', (e) => {
     const targ = e.target.nodeName === 'DIV' ? e.target : e.target.parentNode;
@@ -157,10 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   exit.forEach((event) => event.addEventListener('click', () => {
     windowModal.style.display = 'none';
-    const windows = document.querySelectorAll('.modal-message');
-    windows.forEach((e) => {
-      e.style.display = 'none';
-    });
+    event.parentNode.style.display = 'none';
     deleteUser();
   }));
   settings.addEventListener('click', () => {
@@ -188,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const Buttons = document.querySelectorAll('.modal-message-content');
   Buttons.forEach((e) => {
     e.addEventListener('click', (event) => {
-      if (event.target.id === 'yesRefresh' || event.target.id === 'noWinning') {
+      if (event.target.id === 'yesRefresh' || event.target.id === 'okWinning') {
         while (memo.firstChild) memo.removeChild(memo.firstChild);
         generator(newCountFields);
       }
