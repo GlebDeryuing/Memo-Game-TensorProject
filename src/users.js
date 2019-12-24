@@ -15,7 +15,7 @@ function createDiv(className, user) {
 
 function addUsers(users) {
   removeAllUsers();
-  const usersArea = document.body.getElementById('#listUsers-body');
+  const usersArea = document.getElementById('#listUsers-body');
 
   Object.values(users).map((user) => createDiv('user', user.name))
     .forEach((div) => usersArea.append(div));
