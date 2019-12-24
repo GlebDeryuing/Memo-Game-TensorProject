@@ -134,6 +134,9 @@ button:active {
     top: 1vw;
     height: 1vw;
     width: 1vw;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 1;
 }
 
 .modal-block{
@@ -320,6 +323,11 @@ button:active {
     color: #11999e;
     font-size: 14px;
     margin: 0;
+}
+
+.message h3 span,
+.my-message h3 span {
+    color: #11999e65;
 }
 
 .message p,
